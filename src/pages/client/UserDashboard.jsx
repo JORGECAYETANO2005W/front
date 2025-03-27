@@ -1,10 +1,10 @@
-import React, { useEffect, useState, useRef } from "react";
+import  { useEffect, useState, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
 import instance from "../../api/axios";
 import "../../styles/PetFeeder.css";
 import MQTT from "mqtt";
 
-const PetFeederDashboard = () => {
+const UserDashboard = () => {
   const { macAddress } = useParams();
   const [datosSensores, setDatosSensores] = useState({
     bombaAgua: false,
@@ -205,10 +205,11 @@ const PetFeederDashboard = () => {
         return;
     }
 
+    // Publicar usando QoS 0 (sin especificar QoS)
     client.current.publish(
       topic,
       comandoStr,
-      { qos: 1, retain: false },
+      { retain: false },
       async (error) => {
         if (error) {
           console.error(`❌ Error al publicar en ${topic}:`, error);
@@ -464,4 +465,4 @@ const PetFeederDashboard = () => {
   );
 };
 
-export default PetFeederDashboard;
+export default UserDashboard;
