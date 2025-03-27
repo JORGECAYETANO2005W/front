@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaTimes, FaStar, FaBox, FaTags, FaTrademark, FaCalendarAlt, FaInfoCircle, FaUser, FaImages } from 'react-icons/fa';
 import { MdAttachMoney, MdOutlineRateReview } from 'react-icons/md';
-import '../styles/ProductDetailsModal.css';
+import '../styles/productDetailsModal.css';
 
 function ProductDetailsModal({ product, onClose }) {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
