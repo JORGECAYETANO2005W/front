@@ -3,10 +3,14 @@ import MQTT from 'mqtt';
 import instance from '../api/axios';
 
 export const useMqtt = (macAddress) => {
-    const [datos, setDatos] = useState({ 
-        bombaAgua: false, 
-        ultimaComida: null,
-        estadoConexion: 'desconectado'
+    const [datos, setDatos] = useState({
+        bombaAgua: false,
+        ultimaComida: 0,
+        dispensandoComida: false,
+        cantidadComidaRecipiente: 0,
+        cantidadAguaRecipiente: 0,
+        platoComidaLleno: false,
+        platoAguaLleno: false
     });
     const [conectado, setConectado] = useState(false);
     const [loading, setLoading] = useState(true);
@@ -25,31 +29,30 @@ export const useMqtt = (macAddress) => {
         }
     };
 
-    // Función para publicar comandos
-    const publicarComando = (tipo, accion) => {
-        return new Promise((resolve, reject) => {
-            if (!clientRef.current?.connected) {
-                reject(new Error('Cliente MQTT no conectado'));
-                return;
+    const enviarComando = (comando) => {
+        if (!clientRef.current || !conectado) {
+            console.error("No hay conexión MQTT activa");
+            return false;
+        }
+
+        try {
+            // Comandos compatibles con el dispensador
+            if (comando === 'dispensarComida') {
+                clientRef.current.publish(`mascota/comida/${macAddress}`, "dispensar");
+                return true;
+            } else if (comando === 'activarAgua') {
+                clientRef.current.publish(`mascota/agua/${macAddress}`, "activar");
+                return true;
+            } else if (comando === 'desactivarAgua') {
+                clientRef.current.publish(`mascota/agua/${macAddress}`, "desactivar");
+                return true;
             }
-
-            const topic = `mascota/${tipo}/${macAddress}`;
-            
-            clientRef.current.publish(topic, accion, { qos: 1 }, (err) => {
-                if (err) {
-                    console.error(`Error al publicar en ${topic}:`, err);
-                    reject(err);
-                } else {
-                    console.log(`Comando ${accion} publicado en ${topic}`);
-                    resolve();
-                }
-            });
-        });
+            return false;
+        } catch (error) {
+            console.error("Error al enviar comando:", error);
+            return false;
+        }
     };
-
-    // Funciones específicas
-    const dispensarComida = () => publicarComando('comida', 'dispensar');
-    const controlarBombaAgua = (activar) => publicarComando('agua', activar ? 'activar' : 'desactivar');
 
     useEffect(() => {
         if (!macAddress) {
@@ -59,7 +62,7 @@ export const useMqtt = (macAddress) => {
         }
 
         const mqttOptions = {
-            clientId: `pet-feeder-${macAddress}-${Math.random().toString(16).substring(2, 8)}`,
+            clientId: `pet-feeder-client-${macAddress}-${Math.random().toString(16).substring(2, 8)}`,
             username: "esp32",
             password: "esp32",
             clean: true,
@@ -74,51 +77,62 @@ export const useMqtt = (macAddress) => {
         clientRef.current = MQTT.connect(brokerUrl, mqttOptions);
 
         clientRef.current.on('connect', () => {
-            console.log("Conectado al broker MQTT para alimentador de mascotas");
+            console.log("Conectado al broker MQTT");
             
-            const topicEstado = `mascota/estado/${macAddress}`;
-            const topicConfirmacion = `mascota/confirmacion/${macAddress}`;
+            // Suscripción al tópico de estado del dispensador
+            const estadoTopic = `mascota/estado/${macAddress}`;
+            // Suscripción al tópico de confirmación
+            const confirmacionTopic = `mascota/confirmacion/${macAddress}`;
             
-            clientRef.current.subscribe(topicEstado, { qos: 1 }, (err) => {
+            clientRef.current.subscribe([estadoTopic, confirmacionTopic], (err) => {
                 if (!err) {
-                    console.log(`Suscrito a: ${topicEstado}`);
+                    console.log(`Suscrito a: ${estadoTopic} y ${confirmacionTopic}`);
                     setConectado(true);
-                    setDatos(prev => ({ ...prev, estadoConexion: 'conectado' }));
                 } else {
-                    console.error("Error al suscribirse a estado:", err);
+                    console.error("Error al suscribirse:", err);
                     setConectado(false);
-                }
-            });
-
-            clientRef.current.subscribe(topicConfirmacion, { qos: 1 }, (err) => {
-                if (!err) {
-                    console.log(`Suscrito a: ${topicConfirmacion}`);
-                } else {
-                    console.error("Error al suscribirse a confirmación:", err);
                 }
             });
         });
 
         clientRef.current.on('message', (topic, message) => {
-            const msgStr = message.toString();
-            console.log(`Mensaje recibido [${topic}]: ${msgStr}`);
+            const messageStr = message.toString();
+            console.log(`Mensaje recibido en ${topic}: ${messageStr}`);
             
             if (topic === `mascota/estado/${macAddress}`) {
                 try {
-                    const data = JSON.parse(msgStr);
-                    setDatos(prev => ({
-                        ...prev,
-                        bombaAgua: data.bombaAgua,
-                        ultimaComida: data.ultimaComida
-                    }));
-                    
-                    // Guardar estado en base de datos
-                    guardarEstadoEnBD(data);
-                    
+                    const payload = JSON.parse(messageStr);
+                    console.log("Estado del dispensador recibido:", payload);
+
+                    setDatos({
+                        bombaAgua: payload.bombaAgua,
+                        ultimaComida: payload.ultimaComida,
+                        dispensandoComida: payload.dispensandoComida || false,
+                        cantidadComidaRecipiente: payload.cantidadComidaRecipiente || 0,
+                        cantidadAguaRecipiente: payload.cantidadAguaRecipiente || 0,
+                        platoComidaLleno: payload.platoComidaLleno || false,
+                        platoAguaLleno: payload.platoAguaLleno || false,
+                        timestamp: payload.timestamp
+                    });
+
+                    guardarEstadoEnBD(payload);
                     lastMessageTimeRef.current = Date.now();
                     setConectado(true);
-                } catch (err) {
-                    console.error('Error al parsear mensaje:', err);
+                } catch (error) {
+                    console.error("Error al procesar mensaje de estado:", error);
+                }
+            } else if (topic === `mascota/confirmacion/${macAddress}`) {
+                // Procesar confirmaciones (ej: "comida:dispensando", "agua:activada")
+                console.log("Confirmación recibida:", messageStr);
+                // Aquí puedes actualizar estados específicos basados en confirmaciones
+                if (messageStr === "comida:dispensando") {
+                    setDatos(prev => ({ ...prev, dispensandoComida: true }));
+                } else if (messageStr === "comida:completado") {
+                    setDatos(prev => ({ ...prev, dispensandoComida: false }));
+                } else if (messageStr === "agua:activada") {
+                    setDatos(prev => ({ ...prev, bombaAgua: true }));
+                } else if (messageStr === "agua:desactivada") {
+                    setDatos(prev => ({ ...prev, bombaAgua: false }));
                 }
             }
         });
@@ -127,14 +141,12 @@ export const useMqtt = (macAddress) => {
             if (lastMessageTimeRef.current && Date.now() - lastMessageTimeRef.current > 15000) {
                 console.log("No se han recibido mensajes en el tiempo esperado");
                 setConectado(false);
-                setDatos(prev => ({ ...prev, estadoConexion: 'desconectado' }));
             }
         }, 5000);
 
         clientRef.current.on('error', (err) => {
             console.error("Error en conexión MQTT:", err);
             setConectado(false);
-            setDatos(prev => ({ ...prev, estadoConexion: 'error' }));
             
             setTimeout(() => {
                 if (clientRef.current) {
@@ -159,9 +171,9 @@ export const useMqtt = (macAddress) => {
     return { 
         datos, 
         conectado, 
-        loading, 
-        dispensarComida, 
-        controlarBombaAgua 
+        loading,
+        dispensarComida: () => enviarComando('dispensarComida'),
+        activarAgua: () => enviarComando('activarAgua'),
+        desactivarAgua: () => enviarComando('desactivarAgua')
     };
 };
-
