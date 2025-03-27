@@ -4,141 +4,141 @@ import MQTT from 'mqtt';
 export const useMqtt = (macAddress) => {
     const [datos, setDatos] = useState({ 
         bombaAgua: false, 
-        ultimaComida: undefined 
+        ultimaComida: null,
+        estadoConexion: 'desconectado'
     });
-    const [conectado, setConectado] = useState(false);
     const [loading, setLoading] = useState(true);
     const clientRef = useRef(null);
-    const lastMessageTimeRef = useRef(null);
+    const lastMessageRef = useRef(null);
 
-    // Función para controlar dispensador de comida
-    const dispensarComida = () => {
-        if (!clientRef.current || !conectado || !macAddress) {
-            console.error("No se puede dispensar comida: cliente desconectado");
-            return false;
-        }
-        
-        const topic = `mascota/comida/${macAddress}`;
-        clientRef.current.publish(topic, "dispensar");
-        console.log("Comando para dispensar comida enviado");
-        return true;
+    // Función para publicar comandos
+    const publicarComando = (tipo, accion) => {
+        return new Promise((resolve, reject) => {
+            if (!clientRef.current?.connected) {
+                reject(new Error('Cliente MQTT no conectado'));
+                return;
+            }
+
+            const topic = `mascota/${tipo}/${macAddress}`;
+            
+            clientRef.current.publish(topic, accion, { qos: 1 }, (err) => {
+                if (err) {
+                    console.error(`Error al publicar en ${topic}:`, err);
+                    reject(err);
+                } else {
+                    console.log(`Comando ${accion} publicado en ${topic}`);
+                    resolve();
+                }
+            });
+        });
     };
 
-    // Función para controlar bomba de agua
-   // En tu archivo useMqtt.js
-const controlarBombaAgua = (activar) => {
-    if (!clientRef.current || !conectado || !macAddress) {
-        console.error("Cliente MQTT no disponible");
-        return false;
-    }
-    
-    const topic = `mascota/agua/${macAddress}`;
-    const mensaje = activar ? "activar" : "desactivar";
-    
-    console.log(`Enviando comando a ${topic}: ${mensaje}`);
-    
-    clientRef.current.publish(topic, mensaje, { qos: 1 }, (err) => {
-        if (err) {
-            console.error("Error al publicar:", err);
-        } else {
-            console.log("Comando enviado con éxito (QoS 1)");
-        }
-    });
-    
-    return true;
-};
+    // Funciones específicas
+    const dispensarComida = () => publicarComando('comida', 'dispensar');
+    const controlarBombaAgua = (activar) => publicarComando('agua', activar ? 'activar' : 'desactivar');
+
     useEffect(() => {
         if (!macAddress) {
-            console.error("MAC Address no proporcionada");
+            console.error('MAC Address no proporcionada');
             setLoading(false);
             return;
         }
 
-        // Configuración de cliente MQTT
-        const mqttOptions = {
-            clientId: `pet-feeder-${macAddress}-${Math.random().toString(16).substring(2, 8)}`,
-            username: "esp32",
-            password: "esp32",
+        // Configuración de conexión MQTT
+        const options = {
+            clientId: `web-${macAddress}-${Math.random().toString(16).substr(2, 8)}`,
+            username: 'esp32',
+            password: 'esp32',
             clean: true,
-            reconnectPeriod: 1000,
-            connectTimeout: 30 * 1000,
-            protocol: 'wss', // Fuerza el protocolo seguro
-            rejectUnauthorized: false, // Solo para desarrollo (no usar en producción)
-            wsOptions: {
-              // Opciones adicionales para WebSocket seguro
-            }
-          };
+            reconnectPeriod: 5000,
+            connectTimeout: 8000,
+            protocol: 'wss',
+            port: 8084,
+            rejectUnauthorized: false
+        };
 
-        // Para navegadores, usar WebSocket en lugar de TCP
-        const brokerUrl = "wss://raba7554.ala.dedicated.aws.emqxcloud.com:8084/mqtt";
-        clientRef.current = MQTT.connect(brokerUrl, mqttOptions);
+        const brokerUrl = 'wss://raba7554.ala.dedicated.aws.emqxcloud.com/mqtt';
+        clientRef.current = MQTT.connect(brokerUrl, options);
 
+        // Manejadores de eventos
         clientRef.current.on('connect', () => {
-            console.log("Conectado al broker MQTT para alimentador de mascotas");
+            console.log('Conectado al broker MQTT');
+            setDatos(prev => ({ ...prev, estadoConexion: 'conectado' }));
+            setLoading(false);
+
+            // Suscripciones
+            const topicEstado = `mascota/estado/${macAddress}`;
+            const topicConfirmacion = `mascota/confirmacion/${macAddress}`;
             
-            // Suscribirse al tema de estado del dispositivo
-            const estadoTopic = `mascota/estado/${macAddress}`;
-            clientRef.current.subscribe(estadoTopic, (err) => {
-                if (!err) {
-                    console.log(`Suscrito a: ${estadoTopic}`);
-                    setConectado(true);
+            clientRef.current.subscribe(topicEstado, { qos: 1 }, (err) => {
+                if (err) {
+                    console.error(`Error al suscribirse a ${topicEstado}:`, err);
                 } else {
-                    console.error("Error al suscribirse:", err);
-                    setConectado(false);
+                    console.log(`Suscrito a ${topicEstado} con QoS 1`);
+                }
+            });
+
+            clientRef.current.subscribe(topicConfirmacion, { qos: 1 }, (err) => {
+                if (err) {
+                    console.error(`Error al suscribirse a ${topicConfirmacion}:`, err);
+                } else {
+                    console.log(`Suscrito a ${topicConfirmacion} con QoS 1`);
                 }
             });
         });
 
         clientRef.current.on('message', (topic, message) => {
+            const msgStr = message.toString();
+            lastMessageRef.current = Date.now();
+            
+            console.log(`Mensaje recibido [${topic}]: ${msgStr}`);
+            
             if (topic === `mascota/estado/${macAddress}`) {
                 try {
-                    const payload = JSON.parse(message.toString());
-                    console.log("Datos del alimentador recibidos:", payload);
-                    
-                    // Actualizar datos
-                    setDatos({
-                        bombaAgua: payload.bombaAgua,
-                        ultimaComida: payload.ultimaComida
-                    });
-                    
-                    // Actualizar tiempo del último mensaje
-                    lastMessageTimeRef.current = Date.now();
-                    setConectado(true);
-                } catch (error) {
-                    console.error("Error al procesar mensaje:", error);
+                    const data = JSON.parse(msgStr);
+                    setDatos(prev => ({
+                        ...prev,
+                        bombaAgua: data.bombaAgua,
+                        ultimaComida: data.ultimaComida
+                    }));
+                } catch (err) {
+                    console.error('Error al parsear mensaje:', err);
                 }
             }
         });
 
-        // Verificar desconexión por timeout
-        const intervalo = setInterval(() => {
-            if (lastMessageTimeRef.current && Date.now() - lastMessageTimeRef.current > 15000) {
-                console.log("No se han recibido mensajes en el tiempo esperado");
-                setConectado(false);
-            }
-        }, 5000);
-
         clientRef.current.on('error', (err) => {
-            console.error("Error en conexión MQTT:", err);
-            setConectado(false);
+            console.error('Error en conexión MQTT:', err);
+            setDatos(prev => ({ ...prev, estadoConexion: 'error' }));
         });
 
-        setLoading(false);
+        clientRef.current.on('close', () => {
+            console.log('Conexión MQTT cerrada');
+            setDatos(prev => ({ ...prev, estadoConexion: 'desconectado' }));
+        });
+
+        // Verificar actividad periódicamente
+        const checkActivity = setInterval(() => {
+            if (lastMessageRef.current && Date.now() - lastMessageRef.current > 30000) {
+                console.log('Sin actividad MQTT en los últimos 30 segundos');
+                setDatos(prev => ({ ...prev, estadoConexion: 'inactivo' }));
+            }
+        }, 10000);
 
         // Limpieza
         return () => {
-            clearInterval(intervalo);
+            clearInterval(checkActivity);
             if (clientRef.current) {
                 clientRef.current.end();
-                console.log("Cliente MQTT desconectado");
+                console.log('Desconectado de MQTT');
             }
         };
     }, [macAddress]);
 
     return { 
         datos, 
-        conectado, 
         loading, 
+        conectado: datos.estadoConexion === 'conectado',
         dispensarComida, 
         controlarBombaAgua 
     };
