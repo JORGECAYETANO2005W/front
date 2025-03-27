@@ -53,7 +53,6 @@ export const useMqtt = (macAddress) => {
             reconnectPeriod: 5000,
             connectTimeout: 8000,
             protocol: 'wss',
-            port: 8084,
             rejectUnauthorized: false
         };
 
