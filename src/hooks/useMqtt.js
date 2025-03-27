@@ -25,19 +25,28 @@ export const useMqtt = (macAddress) => {
     };
 
     // Función para controlar bomba de agua
-    const controlarBombaAgua = (activar) => {
-        if (!clientRef.current || !conectado || !macAddress) {
-            console.error("No se puede controlar bomba: cliente desconectado");
-            return false;
+   // En tu archivo useMqtt.js
+const controlarBombaAgua = (activar) => {
+    if (!clientRef.current || !conectado || !macAddress) {
+        console.error("Cliente MQTT no disponible");
+        return false;
+    }
+    
+    const topic = `mascota/agua/${macAddress}`;
+    const mensaje = activar ? "activar" : "desactivar";
+    
+    console.log(`Enviando comando a ${topic}: ${mensaje}`);
+    
+    clientRef.current.publish(topic, mensaje, { qos: 1 }, (err) => {
+        if (err) {
+            console.error("Error al publicar:", err);
+        } else {
+            console.log("Comando enviado con éxito (QoS 1)");
         }
-        
-        const topic = `mascota/agua/${macAddress}`;
-        const mensaje = activar ? "activar" : "desactivar";
-        clientRef.current.publish(topic, mensaje);
-        console.log(`Comando de bomba de agua '${mensaje}' enviado`);
-        return true;
-    };
-
+    });
+    
+    return true;
+};
     useEffect(() => {
         if (!macAddress) {
             console.error("MAC Address no proporcionada");
