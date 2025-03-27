@@ -1,0 +1,363 @@
+/* Veterinary Admin Dashboard - Product Table Styling */
+:root {
+    --primary-orange: #ff7b29;
+    --secondary-orange: #ff9f4d;
+    --light-orange: #ffeedd;
+    --white: #ffffff;
+    --dark-gray: #444444;
+    --medium-gray: #777777;
+    --light-gray: #eeeeee;
+    --danger-red: #f44336;
+    --success-green: #4caf50;
+    --info-blue: #2196f3;
+}
+
+/* Table Container */
+.vet-admin-table-container {
+    background-color: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(255, 123, 41, 0.15);
+    margin: 20px;
+    padding: 24px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Table Header */
+.vet-admin-table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.vet-admin-table-title {
+    color: var(--primary-orange);
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin: 0;
+    position: relative;
+    padding-bottom: 8px;
+}
+
+.vet-admin-table-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background-color: var(--primary-orange);
+}
+
+/* Search Container */
+.vet-admin-search-container {
+    position: relative;
+    flex-grow: 1;
+    max-width: 400px;
+}
+
+.vet-admin-search-input {
+    width: 100%;
+    padding: 12px 16px 12px 40px;
+    border: 2px solid var(--light-gray);
+    border-radius: 25px;
+    font-size: 0.95rem;
+    background-color: var(--white);
+    transition: all 0.3s ease;
+}
+
+.vet-admin-search-input:focus {
+    outline: none;
+    border-color: var(--primary-orange);
+    box-shadow: 0 0 0 3px rgba(255, 123, 41, 0.2);
+}
+
+.vet-admin-search-container::before {
+    content: '\f002';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--medium-gray);
+}
+
+/* Create Button */
+.vet-admin-create-btn {
+    background-color: var(--primary-orange);
+    color: var(--white);
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.vet-admin-create-btn:hover {
+    background-color: var(--secondary-orange);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 123, 41, 0.3);
+}
+
+/* Responsive Table */
+.vet-admin-table-responsive {
+    overflow-x: auto;
+    border-radius: 8px;
+    background-color: var(--white);
+}
+
+/* Table Styling */
+.vet-admin-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.vet-admin-table thead tr {
+    background-color: var(--light-orange);
+}
+
+.vet-admin-table th {
+    padding: 16px;
+    text-align: left;
+    color: var(--dark-gray);
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-bottom: 2px solid var(--secondary-orange);
+}
+
+.vet-admin-table tbody tr {
+    transition: all 0.3s ease;
+}
+
+.vet-admin-table tbody tr:nth-child(even) {
+    background-color: var(--light-gray);
+}
+
+.vet-admin-table tbody tr:hover {
+    background-color: var(--light-orange);
+}
+
+.vet-admin-table td {
+    padding: 14px 16px;
+    font-size: 0.95rem;
+    color: var(--dark-gray);
+    border-bottom: 1px solid var(--light-gray);
+}
+
+/* Table Header Content with Icons */
+.vet-admin-th-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Specific Column Styling */
+.vet-admin-price-column {
+    font-weight: 600;
+    color: var(--secondary-orange);
+}
+
+.vet-admin-stock-column {
+    font-weight: 600;
+}
+
+.vet-admin-rating-column {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.vet-admin-star-icon {
+    color: var(--primary-orange);
+}
+
+/* Action Buttons */
+.vet-admin-product-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+.vet-admin-view-btn,
+.vet-admin-update-btn,
+.vet-admin-delete-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.vet-admin-view-btn {
+    background-color: var(--info-blue);
+    color: var(--white);
+}
+
+.vet-admin-update-btn {
+    background-color: var(--primary-orange);
+    color: var(--white);
+}
+
+.vet-admin-delete-btn {
+    background-color: var(--danger-red);
+    color: var(--white);
+}
+
+.vet-admin-view-btn:hover,
+.vet-admin-update-btn:hover,
+.vet-admin-delete-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Loading States */
+.vet-admin-loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px;
+    background-color: var(--white);
+    border-radius: 8px;
+    gap: 16px;
+}
+
+.vet-admin-loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(255, 123, 41, 0.2);
+    border-left-color: var(--primary-orange);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Error Container */
+.vet-admin-error-container {
+    background-color: #fff8f8;
+    border-left: 4px solid var(--danger-red);
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px;
+}
+
+.vet-admin-retry-btn {
+    background-color: var(--primary-orange);
+    color: var(--white);
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    margin-top: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+/* Empty State */
+.vet-admin-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px;
+    background-color: var(--white);
+    border-radius: 8px;
+    gap: 16px;
+    color: var(--medium-gray);
+}
+
+.vet-admin-empty-state svg {
+    color: var(--primary-orange);
+    opacity: 0.7;
+    margin-bottom: 16px;
+}
+
+/* Modal Styling */
+.vet-admin-modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.vet-admin-modal-content {
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    padding: 24px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.vet-admin-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--light-orange);
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+}
+
+.vet-admin-modal-title {
+    color: var(--primary-orange);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.vet-admin-modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--medium-gray);
+    cursor: pointer;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .vet-admin-table-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .vet-admin-search-container {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .vet-admin-create-btn {
+        align-self: flex-end;
+    }
+
+    .vet-admin-product-actions {
+        flex-direction: column;
+    }
+}
+

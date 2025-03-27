@@ -1,0 +1,955 @@
+/* Variables de colores para veterinaria */
+:root {
+    --primary: #FF8C00;
+    /* Naranja principal */
+    --primary-light: #FFA500;
+    /* Naranja más claro */
+    --primary-dark: #E67300;
+    /* Naranja más oscuro */
+    --accent: #FFD700;
+    /* Amarillo dorado */
+    --accent-light: #FFEB99;
+    /* Amarillo suave */
+    --white: #FFFFFF;
+    --off-white: #F9F9F7;
+    --light-gray: #EAEAEA;
+    --medium-gray: #999999;
+    --dark-gray: #444444;
+    --shadow: rgba(0, 0, 0, 0.08);
+    --shadow-darker: rgba(0, 0, 0, 0.15);
+
+    /* Fuentes y tamaños */
+    --font-primary: 'Montserrat', sans-serif;
+    --font-secondary: 'Open Sans', sans-serif;
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --transition: all 0.25s ease-in-out;
+}
+
+
+
+.txt {
+    font-family: var(--font-secondary);
+}
+
+/* Contenedor principal de la página */
+.product-detail-container {
+    max-width: 1280px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+/* Estilos de la tarjeta de producto */
+.product-detail-card {
+    background-color: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 5px 20px var(--shadow);
+    overflow: hidden;
+    margin-bottom: 2rem;
+    transition: var(--transition);
+}
+
+.product-detail-card:hover {
+    box-shadow: 0 8px 25px var(--shadow-darker);
+    transform: translateY(-3px);
+}
+
+/* Sección principal del producto */
+.product-main-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    padding: 2rem;
+}
+
+@media (max-width: 992px) {
+    .product-main-section {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+/* Sección de imágenes */
+.product-images-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.product-main-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    box-shadow: 0 3px 10px var(--shadow);
+    transition: var(--transition);
+}
+
+.product-image-gallery {
+    display: flex;
+    gap: 0.75rem;
+    overflow-x: auto;
+    padding: 0.5rem 0;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-light) var(--light-gray);
+}
+
+.product-image-gallery::-webkit-scrollbar {
+    height: 6px;
+}
+
+.product-image-gallery::-webkit-scrollbar-track {
+    background: var(--light-gray);
+    border-radius: 10px;
+}
+
+.product-image-gallery::-webkit-scrollbar-thumb {
+    background-color: var(--primary-light);
+    border-radius: 10px;
+}
+
+.product-thumbnail {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: var(--transition);
+    opacity: 0.7;
+}
+
+.product-thumbnail:hover {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.product-thumbnail.active {
+    border-color: var(--primary);
+    opacity: 1;
+}
+
+/* Sección de información */
+.product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.product-title {
+    font-size: 2.25rem;
+    margin: 0;
+    color: var(--primary-dark);
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+}
+
+.product-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.stars {
+    display: flex;
+    gap: 0.2rem;
+}
+
+.star {
+    color: var(--accent);
+    font-size: 1.2rem;
+}
+
+.rating-count {
+    color: var(--medium-gray);
+    font-size: 0.9rem;
+}
+
+.product-description {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--dark-gray);
+    border-top: 1px solid var(--light-gray);
+    padding-top: 1.25rem;
+    margin: 0;
+}
+
+.product-price {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 0.5rem 0;
+}
+
+.product-stock {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.stock-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.in-stock {
+    background-color: #4CAF50;
+}
+
+.low-stock {
+    background-color: var(--accent);
+}
+
+.out-of-stock {
+    background-color: #F44336;
+}
+
+.product-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.detail-item {
+    background-color: var(--light-gray);
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+}
+
+/* Botones */
+.button-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.cart-button,
+.buy-button,
+.login-button,
+.submit-review {
+    padding: 0.875rem 1.5rem;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: var(--transition);
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.cart-button {
+    background-color: var(--white);
+    color: var(--primary-dark);
+    border: 2px solid var(--primary);
+    flex: 1;
+}
+
+.cart-button:hover:not(:disabled) {
+    background-color: var(--primary-light);
+    color: var(--white);
+}
+
+.buy-button {
+    background-color: var(--primary);
+    color: var(--white);
+    flex: 1;
+}
+
+.buy-button:hover:not(:disabled) {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Sección de reseñas */
+.reviews-section {
+    padding: 2rem;
+    background-color: var(--off-white);
+    border-top: 1px solid var(--light-gray);
+}
+
+.reviews-title {
+    font-size: 1.75rem;
+    color: var(--primary-dark);
+    margin-bottom: 2rem;
+    position: relative;
+    padding-bottom: 0.75rem;
+}
+
+.reviews-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background-color: var(--accent);
+    border-radius: 2px;
+}
+
+.reviews-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.review-item {
+    background-color: var(--white);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    box-shadow: 0 3px 15px var(--shadow);
+    transition: var(--transition);
+}
+
+.review-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 20px var(--shadow-darker);
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.reviewer-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.reviewer-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: var(--primary-light);
+    color: var(--white);
+    border-radius: 50%;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.reviewer-name {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.review-date {
+    color: var(--medium-gray);
+    font-size: 0.85rem;
+}
+
+.review-rating {
+    margin-bottom: 0.75rem;
+}
+
+.review-comment {
+    line-height: 1.75;
+    margin: 0;
+}
+
+.no-reviews {
+    background-color: var(--accent-light);
+    border-radius: var(--radius-md);
+    padding: 2rem;
+    text-align: center;
+    color: var(--dark-gray);
+    font-style: italic;
+}
+
+/* Formulario para escribir reseñas */
+.write-review {
+    background-color: var(--white);
+    border-radius: var(--radius-md);
+    padding: 2rem;
+    box-shadow: 0 3px 15px var(--shadow);
+}
+
+.write-review-title {
+    font-size: 1.5rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: var(--primary-dark);
+}
+
+.login-prompt {
+    text-align: center;
+    padding: 1.5rem;
+}
+
+.resen-init {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.login-button {
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 0.75rem 2rem;
+}
+
+.login-button:hover {
+    background-color: var(--primary-dark);
+}
+
+.already-reviewed-message {
+    background-color: var(--accent-light);
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    text-align: center;
+}
+
+.review-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.rating-selection {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.rating-selection label {
+    font-weight: 600;
+}
+
+.rating-input {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.rating-star {
+    font-size: 2rem;
+    color: var(--light-gray);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.rating-star:hover,
+.rating-star.active {
+    color: var(--accent);
+    transform: scale(1.1);
+}
+
+.comment-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.comment-field label {
+    font-weight: 600;
+}
+
+.comment-input {
+    padding: 1rem;
+    border: 1px solid var(--light-gray);
+    border-radius: var(--radius-md);
+    font-family: var(--font-secondary);
+    resize: vertical;
+    min-height: 120px;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.comment-input:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.2);
+}
+
+.submit-review {
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: var(--transition);
+}
+
+.submit-review:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+/* Estado de carga */
+.loading {
+    text-align: center;
+    padding: 3rem;
+    font-size: 1.2rem;
+    color: var(--primary);
+    background-color: var(--white);
+    border-radius: var(--radius-md);
+    box-shadow: 0 3px 15px var(--shadow);
+    position: relative;
+}
+
+.loading::before {
+    content: '';
+    width: 30px;
+    height: 30px;
+    border: 3px solid var(--light-gray);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    display: block;
+    margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .product-main-section {
+        grid-template-columns: 1fr;
+        padding: 1.5rem;
+    }
+
+    .product-title {
+        font-size: 1.75rem;
+    }
+
+    .product-price {
+        font-size: 1.5rem;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .reviews-section,
+    .write-review {
+        padding: 1.5rem;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.product-main-section {
+    animation: fadeIn 0.6s ease-out;
+}
+
+.reviews-section {
+    animation: fadeIn 0.6s ease-out 0.2s both;
+}
+
+/* Efecto de hover para imágenes */
+.product-main-image:hover {
+    transform: scale(1.02);
+    box-shadow: 0 5px 15px var(--shadow-darker);
+}
+
+/* Badges y etiquetas veterinarias */
+.pet-friendly-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--accent-light);
+    color: var(--primary-dark);
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+.pet-friendly-badge::before {
+    content: '🐾';
+    font-size: 1.1rem;
+}
+
+/* Sección de productos relacionados para veterinaria */
+.related-products {
+    margin-top: 3rem;
+}
+
+.related-products-title {
+    font-size: 1.5rem;
+    color: var(--primary-dark);
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 0.75rem;
+}
+
+.related-products-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background-color: var(--accent);
+    border-radius: 2px;
+}
+
+.related-products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+}
+
+.related-product-card {
+    background-color: var(--white);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: 0 3px 10px var(--shadow);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+}
+
+.related-product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px var(--shadow-darker);
+}
+
+.related-product-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.related-product-info {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+}
+
+.related-product-name {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.related-product-category {
+    font-size: 0.8rem;
+    color: var(--medium-gray);
+}
+
+.related-product-price {
+    margin-top: auto;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+/* Estilos adicionales para etiquetas de veterinaria */
+.veterinary-specific {
+    background-color: var(--accent-light);
+    border-radius: var(--radius-sm);
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--primary-dark);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin-right: 0.5rem;
+}
+
+.for-dogs::before {
+    content: '🐕';
+}
+
+.for-cats::before {
+    content: '🐈';
+}
+
+.for-birds::before {
+    content: '🐦';
+}
+
+.for-all-pets::before {
+    content: '🐾';
+}
+
+/* Gráfico circular para valoraciones */
+.rating-chart {
+    width: 80px;
+    height: 80px;
+    position: relative;
+    border-radius: 50%;
+    background: conic-gradient(var(--primary) calc(var(--rating-percent) * 1%),
+            var(--light-gray) 0);
+    margin-bottom: 1rem;
+}
+
+.rating-chart::before {
+    content: attr(data-rating);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: var(--primary-dark);
+}
+
+/* Añadir un aspecto más veterinario a la página */
+.veterinary-theme {
+    position: relative;
+}
+
+.veterinary-theme::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+/* Botón flotante para consultas veterinarias */
+.vet-consult-button {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background-color: var(--primary);
+    color: var(--white);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(255, 140, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 100;
+}
+
+.vet-consult-button:hover {
+    transform: scale(1.1);
+    background-color: var(--primary-dark);
+}
+
+.vet-consult-button::before {
+    content: '👨‍⚕️';
+    font-size: 1.5rem;
+}
+
+/* Tooltip para el botón de consulta */
+.vet-consult-button::after {
+    content: 'Consulta veterinaria';
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--dark-gray);
+    color: var(--white);
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+}
+
+.vet-consult-button:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Estilización de tablas para información de producto */
+.product-specs-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 1.5rem 0;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+}
+
+.product-specs-table th,
+.product-specs-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.product-specs-table th {
+    background-color: var(--accent-light);
+    color: var(--primary-dark);
+    font-weight: 600;
+}
+
+.product-specs-table tr:last-child td {
+    border-bottom: none;
+}
+
+.product-specs-table tr:nth-child(even) {
+    background-color: var(--off-white);
+}
+
+/* Estilización de información nutricional para productos veterinarios */
+.nutrition-info {
+    background-color: var(--off-white);
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    margin: 1.5rem 0;
+    border-left: 4px solid var(--primary);
+}
+
+.nutrition-title {
+    font-size: 1.2rem;
+    color: var(--primary-dark);
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.nutrition-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+}
+
+.nutrition-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95rem;
+}
+
+.nutrition-item-name {
+    font-weight: 500;
+}
+
+.nutrition-item-value {
+    color: var(--primary-dark);
+    font-weight: 600;
+}
+
+/* Indicador de seguridad para mascotas */
+.safety-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.safety-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.safe {
+    background-color: #4CAF50;
+}
+
+.caution {
+    background-color: var(--accent);
+}
+
+.unsafe {
+    background-color: #F44336;
+}
+
+.safety-text {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Adaptaciones para pantallas muy pequeñas */
+@media (max-width: 480px) {
+
+    .product-main-section,
+    .reviews-section,
+    .write-review {
+        padding: 1rem;
+    }
+
+    .product-title {
+        font-size: 1.5rem;
+    }
+
+    .product-price {
+        font-size: 1.25rem;
+    }
+
+    .review-header {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .rating-input {
+        justify-content: center;
+    }
+
+    .nutrition-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Efectos de enfoque para mejora de accesibilidad */
+button:focus,
+textarea:focus,
+.product-thumbnail:focus {
+    outline: 3px solid rgba(255, 140, 0, 0.3);
+    outline-offset: 2px;
+}
+
+/* Estilos para impresión */
+@media print {
+
+    .button-group,
+    .write-review,
+    .vet-consult-button {
+        display: none;
+    }
+
+    .product-detail-card {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+
+    .product-main-section {
+        grid-template-columns: 1fr 2fr;
+    }
+}
+

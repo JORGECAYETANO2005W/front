@@ -1,0 +1,357 @@
+/* UserCitas.css */
+:root {
+    --primary-orange: #ff8a00;
+    --secondary-orange: #ff6b00;
+    --bright-yellow: #ffc107;
+    --soft-yellow: #ffe082;
+    --pure-white: #ffffff;
+    --off-white: #f9f9f9;
+    --light-gray: #f0f0f0;
+    --medium-gray: #d0d0d0;
+    --dark-gray: #666666;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 12px rgba(255, 138, 0, 0.1);
+    --transition: all 0.3s ease;
+  }
+  
+  .userCitas__container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--dark-gray);
+    background-color: var(--off-white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+  }
+  
+  .userCitas__title {
+    color: var(--primary-orange);
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+  }
+  
+  .userCitas__title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(to right, var(--primary-orange), var(--bright-yellow));
+    border-radius: 3px;
+  }
+  
+  .userCitas__loading {
+    text-align: center;
+    font-size: 1.2rem;
+    padding: 2rem;
+    color: var(--dark-gray);
+  }
+  
+  .userCitas__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem 0;
+    background-color: var(--pure-white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+  }
+  
+  .userCitas__emptyText {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    color: var(--dark-gray);
+  }
+  
+  .userCitas__newButton, 
+  .userCitas__addButton {
+    background-color: var(--primary-orange);
+    color: var(--pure-white);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(255, 138, 0, 0.3);
+  }
+  
+  .userCitas__newButton:hover, 
+  .userCitas__addButton:hover {
+    background-color: var(--secondary-orange);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(255, 138, 0, 0.4);
+  }
+  
+  .userCitas__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+    position: relative;
+  }
+  
+  .userCitas__card {
+    background-color: var(--pure-white);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+    border-top: 4px solid var(--primary-orange);
+  }
+  
+  .userCitas__card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(255, 138, 0, 0.2);
+  }
+  
+  .userCitas__cardHeader {
+    background: linear-gradient(135deg, var(--primary-orange), var(--bright-yellow));
+    color: var(--pure-white);
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .userCitas__cardDate {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  
+  .userCitas__status {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+  
+  .userCitas__statusActive {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: var(--pure-white);
+  }
+  
+  .userCitas__statusInactive {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: var(--light-gray);
+  }
+  
+  .userCitas__cardBody {
+    padding: 1.5rem;
+  }
+  
+  .userCitas__cardTime {
+    margin: 0.5rem 0;
+    font-size: 1.1rem;
+  }
+  
+  .userCitas__cardLabel {
+    color: var(--primary-orange);
+    font-weight: 600;
+  }
+  
+  .userCitas__cardFooter {
+    padding: 1rem;
+    border-top: 1px solid var(--light-gray);
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .userCitas__deleteButton {
+    background-color: transparent;
+    color: var(--primary-orange);
+    border: 1px solid var(--primary-orange);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .userCitas__deleteButton:hover {
+    background-color: var(--primary-orange);
+    color: var(--pure-white);
+  }
+  
+  .userCitas__addButton {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 15px rgba(255, 106, 0, 0.4);
+  }
+  
+  /* Modal styles */
+  .userCitas__modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(3px);
+  }
+  
+  .userCitas__modal {
+    background-color: var(--pure-white);
+    border-radius: var(--border-radius);
+    width: 90%;
+    max-width: 500px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    animation: modalFadeIn 0.3s ease forwards;
+  }
+  /* Add these styles to your UserCitas.css file */
+
+.userCitas__editButton {
+    background-color: transparent;
+    color: var(--bright-yellow);
+    border: 1px solid var(--bright-yellow);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-right: 0.5rem;
+  }
+  
+  .userCitas__editButton:hover {
+    background-color: var(--bright-yellow);
+    color: var(--pure-white);
+    box-shadow: 0 2px 8px rgba(255, 193, 7, 0.4);
+  }
+  
+  /* Update the card footer to accommodate both buttons */
+  .userCitas__cardFooter {
+    padding: 1rem;
+    border-top: 1px solid var(--light-gray);
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+  }
+  
+  @keyframes modalFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .userCitas__modalTitle {
+    color: var(--primary-orange);
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 1.8rem;
+  }
+  
+  .userCitas__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .userCitas__formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .userCitas__formLabel {
+    font-weight: 600;
+    color: var(--dark-gray);
+    font-size: 1rem;
+  }
+  
+  .userCitas__formInput {
+    padding: 0.8rem 1rem;
+    border: 2px solid var(--light-gray);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    transition: var(--transition);
+  }
+  
+  .userCitas__formInput:focus {
+    outline: none;
+    border-color: var(--primary-orange);
+    box-shadow: 0 0 0 3px rgba(255, 138, 0, 0.2);
+  }
+  
+  .userCitas__formActions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    gap: 1rem;
+  }
+  
+  .userCitas__saveButton,
+  .userCitas__cancelButton {
+    flex: 1;
+    padding: 0.8rem;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .userCitas__saveButton {
+    background-color: var(--primary-orange);
+    color: var(--pure-white);
+    border: none;
+  }
+  
+  .userCitas__saveButton:hover {
+    background-color: var(--secondary-orange);
+  }
+  
+  .userCitas__cancelButton {
+    background-color: var(--pure-white);
+    color: var(--dark-gray);
+    border: 1px solid var(--medium-gray);
+  }
+  
+  .userCitas__cancelButton:hover {
+    background-color: var(--light-gray);
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .userCitas__list {
+      grid-template-columns: 1fr;
+    }
+    
+    .userCitas__container {
+      padding: 1rem;
+    }
+    
+    .userCitas__title {
+      font-size: 2rem;
+    }
+    
+    .userCitas__formActions {
+      flex-direction: column;
+    }
+  }

@@ -1,0 +1,359 @@
+/* Estilos para el Pet Feeder Dashboard con prefijos IoT para evitar conflictos */
+.IoT-feeder-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #ffffff;
+  color: #333333;
+  padding: 30px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.IoT-feeder-header {
+  text-align: center;
+  margin-bottom: 40px;
+  animation: IoT-fadeIn 0.8s ease-in-out;
+}
+
+.IoT-feeder-header h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+  color: #ff8c00; /* Orange color for veterinary theme */
+}
+
+.IoT-feeder-subtitle {
+  font-size: 18px;
+  color: #ffc107; /* Yellow color for veterinary theme */
+  font-weight: 500;
+}
+
+.IoT-devices-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.IoT-device-card {
+  background: #fff6e9; /* Light cream background */
+  border-radius: 12px;
+  border-left: 5px solid #ff8c00; /* Orange accent */
+  box-shadow: 0 4px 15px rgba(255, 140, 0, 0.1);
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease-in-out;
+  animation: IoT-fadeIn 0.8s ease-in-out;
+}
+
+.IoT-device-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(255, 140, 0, 0.2);
+}
+
+.IoT-device-icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  margin-bottom: 20px;
+}
+
+/* Iconos */
+.IoT-food-icon, .IoT-water-icon, .IoT-container-icon, .IoT-bowl-icon {
+  width: 80px;
+  height: 80px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.8;
+  transition: all 0.5s ease;
+}
+
+.IoT-food-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ff8c00' viewBox='0 0 24 24'%3E%3Cpath d='M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z'/%3E%3C/svg%3E");
+}
+
+.IoT-water-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%230066cc' viewBox='0 0 24 24'%3E%3Cpath d='M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.8 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8zM12 20c-3.35 0-6-2.57-6-6.2 0-2.34 1.95-5.44 6-9.14 4.05 3.7 6 6.79 6 9.14 0 3.63-2.65 6.2-6 6.2z'/%3E%3C/svg%3E");
+}
+
+.IoT-container-icon {
+  position: relative;
+  width: 70px;
+  height: 90px;
+  border: 3px solid #ff8c00;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.IoT-food-container {
+  border-color: #ff8c00;
+}
+
+.IoT-water-container {
+  border-color: #0066cc;
+}
+
+.IoT-bowl-icon {
+  position: relative;
+  width: 90px;
+  height: 45px;
+  border: 3px solid #ff8c00;
+  border-radius: 0 0 45px 45px;
+  overflow: hidden;
+}
+
+.IoT-food-bowl {
+  border-color: #ff8c00;
+}
+
+.IoT-water-bowl {
+  border-color: #0066cc;
+}
+
+.IoT-level-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  transition: height 0.5s ease-in-out;
+}
+
+/* Food container levels */
+.IoT-container-icon.IoT-food-container .IoT-level-indicator.IoT-full {
+  height: 90%;
+  background-color: #ff8c00;
+}
+
+.IoT-container-icon.IoT-food-container .IoT-level-indicator.IoT-medium {
+  height: 50%;
+  background-color: #ff8c00;
+}
+
+.IoT-container-icon.IoT-food-container .IoT-level-indicator.IoT-empty {
+  height: 10%;
+  background-color: #ff8c00;
+}
+
+/* Water container levels */
+.IoT-container-icon.IoT-water-container .IoT-level-indicator.IoT-full {
+  height: 90%;
+  background-color: #0066cc;
+}
+
+.IoT-container-icon.IoT-water-container .IoT-level-indicator.IoT-medium {
+  height: 50%;
+  background-color: #0066cc;
+}
+
+.IoT-container-icon.IoT-water-container .IoT-level-indicator.IoT-empty {
+  height: 10%;
+  background-color: #0066cc;
+}
+
+/* Food bowl levels */
+.IoT-bowl-icon.IoT-food-bowl .IoT-level-indicator.IoT-full {
+  height: 80%;
+  background-color: #ff8c00;
+}
+
+.IoT-bowl-icon.IoT-food-bowl .IoT-level-indicator.IoT-medium {
+  height: 40%;
+  background-color: #ff8c00;
+}
+
+.IoT-bowl-icon.IoT-food-bowl .IoT-level-indicator.IoT-empty {
+  height: 0%;
+  background-color: #ff8c00;
+}
+
+/* Water bowl levels */
+.IoT-bowl-icon.IoT-water-bowl .IoT-level-indicator.IoT-full {
+  height: 80%;
+  background-color: #0066cc;
+}
+
+.IoT-bowl-icon.IoT-water-bowl .IoT-level-indicator.IoT-medium {
+  height: 40%;
+  background-color: #0066cc;
+}
+
+.IoT-bowl-icon.IoT-water-bowl .IoT-level-indicator.IoT-empty {
+  height: 0%;
+  background-color: #0066cc;
+}
+
+.IoT-food-icon.IoT-active, .IoT-water-icon.IoT-active {
+  opacity: 1;
+  filter: drop-shadow(0 0 10px rgba(255, 140, 0, 0.8));
+}
+
+/* Animación para el dispensador de comida activo */
+.IoT-food-icon.IoT-active {
+  animation: IoT-shake 0.5s ease infinite;
+}
+
+/* Animación para el dispensador de agua activo */
+.IoT-water-icon.IoT-active {
+  animation: IoT-dropWater 1s ease infinite;
+}
+
+@keyframes IoT-shake {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(5deg); }
+  50% { transform: rotate(0deg); }
+  75% { transform: rotate(-5deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes IoT-dropWater {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+  100% { transform: translateY(0); }
+}
+
+.IoT-device-info {
+  text-align: center;
+}
+
+.IoT-device-info h2 {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: #ff8c00;
+}
+
+.IoT-status-display {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.IoT-label {
+  font-weight: bold;
+  color: #333333;
+}
+
+.IoT-status-badge, .IoT-level-badge {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.IoT-status-badge.IoT-active {
+  background-color: #28a745;
+  color: white;
+}
+
+.IoT-status-badge.IoT-inactive {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Level badges */
+.IoT-level-badge.IoT-full {
+  background-color: #28a745;
+  color: white;
+}
+
+.IoT-level-badge.IoT-medium {
+  background-color: #ffc107;
+  color: #333333;
+}
+
+.IoT-level-badge.IoT-empty {
+  background-color: #dc3545;
+  color: white;
+}
+
+.IoT-control-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.IoT-control-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.IoT-control-btn:hover:not(:disabled) {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.IoT-control-btn:active:not(:disabled) {
+  transform: scale(0.98);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.IoT-control-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.IoT-on-btn {
+  background-color: #ff8c00;
+  color: white;
+}
+
+.IoT-on-btn:hover:not(:disabled) {
+  background-color: #e67e00;
+}
+
+.IoT-off-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.IoT-off-btn:hover:not(:disabled) {
+  background-color: #c82333;
+}
+
+.IoT-dashboard-footer {
+  margin-top: auto;
+  text-align: center;
+  font-size: 14px;
+  color: #666666;
+  padding-top: 20px;
+  border-top: 1px solid #eaeaea;
+}
+
+/* Animaciones */
+@keyframes IoT-fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Diseño Responsivo */
+@media (max-width: 768px) {
+  .IoT-feeder-container {
+    padding: 20px;
+  }
+  
+  .IoT-devices-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .IoT-device-card {
+    padding: 20px;
+  }
+  
+  .IoT-feeder-header h1 {
+    font-size: 28px;
+  }
+}

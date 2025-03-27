@@ -1,0 +1,276 @@
+/* Nosotros.css */
+.nosotros-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+}
+
+.nosotros-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.nosotros-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #FF7F00;
+    /* Naranja principal */
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.nosotros-separator {
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #FF7F00, #FFBF00);
+    margin: 0 auto;
+    border-radius: 2px;
+}
+
+.nosotros-section {
+    margin-bottom: 4rem;
+}
+
+.nosotros-section h2 {
+    font-size: 2rem;
+    color: #FF7F00;
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+.nosotros-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #FFBF00, transparent);
+    border-radius: 1.5px;
+}
+
+/* Estilos para las tarjetas de Misión y Visión */
+.nosotros-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.nosotros-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(255, 127, 0, 0.1);
+    padding: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 4px solid #FF7F00;
+}
+
+.nosotros-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(255, 127, 0, 0.15);
+}
+
+.nosotros-card h3 {
+    font-size: 1.4rem;
+    color: #FF7F00;
+    margin-bottom: 1rem;
+}
+
+.nosotros-card p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+}
+
+/* Estilos para el acordeón de políticas */
+.nosotros-politicas {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 244, 230, 0.95));
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.politicas-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.politica-item {
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(255, 127, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.politica-item:hover {
+    box-shadow: 0 5px 15px rgba(255, 127, 0, 0.15);
+}
+
+.politica-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 1.5rem;
+    cursor: pointer;
+    background-color: #FFF;
+    border-left: 4px solid #FFBF00;
+    transition: background-color 0.2s ease;
+}
+
+.politica-header:hover {
+    background-color: #FFF9EF;
+}
+
+.politica-header h3 {
+    font-size: 1.2rem;
+    color: #FF7F00;
+    margin: 0;
+    font-weight: 600;
+}
+
+.politica-toggle {
+    background: none;
+    border: none;
+    color: #FF7F00;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+    background-color: rgba(255, 127, 0, 0.1);
+    border-radius: 50%;
+}
+
+.politica-toggle:hover {
+    background-color: rgba(255, 127, 0, 0.2);
+}
+
+.politica-content {
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    animation: slideDown 0.3s forwards;
+}
+
+@keyframes slideDown {
+    from {
+        max-height: 0;
+        padding: 0 1.5rem;
+        opacity: 0;
+    }
+
+    to {
+        max-height: 500px;
+        padding: 1.5rem;
+        opacity: 1;
+    }
+}
+
+.politica-content p {
+    margin: 0;
+    line-height: 1.6;
+    color: #555;
+}
+
+/* Decoración adicional */
+.nosotros-mision {
+    position: relative;
+}
+
+.nosotros-mision::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    width: 80px;
+    height: 80px;
+    background-color: rgba(255, 191, 0, 0.1);
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.nosotros-vision {
+    position: relative;
+}
+
+.nosotros-vision::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: -20px;
+    width: 100px;
+    height: 100px;
+    background-color: rgba(255, 127, 0, 0.08);
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.nosotros-footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 127, 0, 0.2);
+    color: #FF7F00;
+    font-style: italic;
+    font-weight: 500;
+}
+
+.nosotros-p{
+    color: #333;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nosotros-container {
+        padding: 1.5rem;
+    }
+
+    .nosotros-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .nosotros-header h1 {
+        font-size: 2rem;
+    }
+
+    .nosotros-section h2 {
+        font-size: 1.6rem;
+    }
+}
+
+/* Animación para los elementos al cargar la página */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.nosotros-section {
+    animation: fadeIn 0.8s ease forwards;
+}
+
+.nosotros-section:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.nosotros-section:nth-child(3) {
+    animation-delay: 0.4s;
+}
+

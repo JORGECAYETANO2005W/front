@@ -1,0 +1,575 @@
+/* Veterinary Admin Dashboard - User Table Styling */
+:root {
+    --primary-orange: #ff7b29;
+    --secondary-orange: #ff9f4d;
+    --light-orange: #ffeedd;
+    --white: #ffffff;
+    --dark-gray: #444444;
+    --medium-gray: #777777;
+    --light-gray: #eeeeee;
+    --danger-red: #f44336;
+    --success-green: #4caf50;
+    --info-blue: #2196f3;
+}
+
+/* Table Container */
+.user-table-container {
+    background-color: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(255, 123, 41, 0.15);
+    margin: 20px;
+    padding: 24px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Table Header */
+.user-table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.user-table-title {
+    color: var(--primary-orange);
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin: 0;
+    position: relative;
+    padding-bottom: 8px;
+}
+
+.user-table-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background-color: var(--primary-orange);
+}
+
+/* Search Container */
+.user-search-container {
+    position: relative;
+    flex-grow: 1;
+    max-width: 400px;
+}
+
+.user-search-input {
+    width: 100%;
+    padding: 12px 12px 12px 40px;
+    border: 1px solid #E0E0E0;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    background-color: #FFFFFF;
+    transition: all 0.3s ease;
+}
+
+.user-search-input:focus {
+    outline: none;
+    border-color: var(--primary-orange);
+    box-shadow: 0 0 0 3px rgba(255, 123, 41, 0.2);
+}
+
+.user-search-container::before {
+    content: '\f002';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--medium-gray);
+}
+
+/* Create Button */
+.user-create-btn {
+    background-color: var(--primary-orange);
+    color: var(--white);
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.user-create-btn:hover {
+    background-color: var(--secondary-orange);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 123, 41, 0.3);
+}
+
+/* Responsive Table */
+.user-table-responsive {
+    overflow-x: auto;
+    border-radius: 8px;
+    background-color: var(--white);
+}
+
+/* Table Styling */
+.user-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.user-table thead tr {
+    background-color: #FFF5EC;
+    border-bottom: 2px solid #FF7B29;
+}
+
+.user-table th {
+    padding: 16px;
+    text-align: left;
+    color: var(--dark-gray);
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-bottom: 2px solid var(--secondary-orange);
+}
+
+.user-table tbody tr {
+    transition: all 0.3s ease;
+}
+
+.user-table tbody tr:nth-child(even) {
+    background-color: var(--light-gray);
+}
+
+.user-table tbody tr:hover {
+    background-color: var(--light-orange);
+}
+
+.user-table td {
+    padding: 14px 16px;
+    font-size: 0.95rem;
+    color: var(--dark-gray);
+    border-bottom: 1px solid var(--light-gray);
+}
+
+/* Table Header Content with Icons */
+.user-th-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Status and Role Column Styling */
+.user-role-column {
+    font-weight: 600;
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 30px;
+    text-align: center;
+    min-width: 130px;
+    font-size: 0.9rem;
+}
+
+
+.user-admin-role {
+    background-color: #FF7B29;
+    color: white;
+}
+
+.user-client-role {
+    background-color: #FFF5EC;
+    color: #8A6850;
+    border: 1px solid #FFE0CC;
+}
+
+
+
+/* Action Buttons */
+.user-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.user-view-btn,
+.user-update-btn,
+.user-delete-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+
+.user-view-btn {
+    background-color: #2196F3;
+    color: white;
+}
+
+.user-update-btn {
+    background-color: #FF7B29;
+    color: white;
+}
+
+.user-delete-btn {
+    background-color: #F44336;
+    color: white;
+}
+
+.user-view-btn:hover,
+.user-update-btn:hover,
+.user-delete-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Loading States */
+.user-loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px;
+    background-color: var(--white);
+    border-radius: 8px;
+    gap: 16px;
+}
+
+.user-loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(255, 123, 41, 0.2);
+    border-left-color: var(--primary-orange);
+    border-radius: 50%;
+    animation: user-spin 1s linear infinite;
+}
+
+@keyframes user-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Error Container */
+.user-error-container {
+    background-color: #fff8f8;
+    border-left: 4px solid var(--danger-red);
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px;
+}
+
+.user-retry-btn {
+    background-color: var(--primary-orange);
+    color: var(--white);
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    margin-top: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+/* Empty State */
+.user-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px;
+    background-color: var(--white);
+    border-radius: 8px;
+    gap: 16px;
+    color: var(--medium-gray);
+}
+
+.user-empty-state svg {
+    color: var(--primary-orange);
+    opacity: 0.7;
+    margin-bottom: 16px;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .user-table-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .user-search-container {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .user-create-btn {
+        align-self: flex-end;
+    }
+
+    .user-actions {
+        flex-direction: column;
+    }
+}
+
+/* Role Edit Modal Styles */
+.user-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.2s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  .user-modal {
+    background-color: #fff;
+    border-radius: 8px;
+    width: 400px;
+    max-width: 90%;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    animation: slideIn 0.3s ease-out;
+    overflow: hidden;
+    border-top: 4px solid #FF8C00;
+  }
+  
+  @keyframes slideIn {
+    from { transform: translateY(-30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  
+  .user-modal-header {
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #f0f0f0;
+    background-color: #fff;
+  }
+  
+  .user-modal-header h3 {
+    margin: 0;
+    color: #FF8C00;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  
+  .user-modal-close {
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #888;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+  }
+  
+  .user-modal-close:hover {
+    background-color: #f8f8f8;
+    color: #FF6347;
+  }
+  
+  .user-modal-body {
+    padding: 20px;
+    background-color: #fff;
+  }
+  
+  .user-modal-body p {
+    margin: 0 0 16px;
+    line-height: 1.5;
+  }
+  
+  .user-form-group {
+    margin-bottom: 20px;
+  }
+  
+  .user-form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #444;
+  }
+  
+  .user-select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.2s ease;
+    background-color: #fff;
+    color: #333;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23FF8C00' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    padding-right: 45px;
+  }
+  
+  .user-select:focus {
+    outline: none;
+    border-color: #FFB347;
+    box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.2);
+  }
+  
+  .user-select:disabled {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+  }
+  
+  .user-message {
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  .user-message:before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+  
+  .user-success {
+    background-color: #FFF8E1;
+    border-left: 4px solid #FFD700;
+    color: #876800;
+  }
+  
+  .user-success:before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23FFD700' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 11.08V12a10 10 0 1 1-5.93-9.14'%3E%3C/path%3E%3Cpolyline points='22 4 12 14.01 9 11.01'%3E%3C/polyline%3E%3C/svg%3E");
+  }
+  
+  .user-error {
+    background-color: #FFF5F5;
+    border-left: 4px solid #FF6347;
+    color: #9B2C2C;
+  }
+  
+  .user-error:before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23FF6347' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'%3E%3C/circle%3E%3Cline x1='12' y1='8' x2='12' y2='12'%3E%3C/line%3E%3Cline x1='12' y1='16' x2='12.01' y2='16'%3E%3C/line%3E%3C/svg%3E");
+  }
+  
+  .user-modal-footer {
+    padding: 16px 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    border-top: 1px solid #f0f0f0;
+    background-color: #FAFAFA;
+  }
+  
+  .user-cancel-btn,
+  .user-save-btn {
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 100px;
+  }
+  
+  .user-cancel-btn {
+    background-color: #F5F5F5;
+    color: #666;
+    border: 1px solid #ddd;
+  }
+  
+  .user-cancel-btn:hover:not(:disabled) {
+    background-color: #EAEAEA;
+    color: #333;
+  }
+  
+  .user-save-btn {
+    background-color: #FF8C00;
+    color: white;
+    border: none;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .user-save-btn:hover:not(:disabled) {
+    background-color: #FF7F00;
+    box-shadow: 0 4px 8px rgba(255, 140, 0, 0.3);
+    transform: translateY(-1px);
+  }
+  
+  .user-save-btn:active:not(:disabled) {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(255, 140, 0, 0.3);
+  }
+  
+  .user-save-btn:disabled,
+  .user-cancel-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  /* Animation when button is clicked */
+  .user-save-btn:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+  }
+  
+  @keyframes ripple {
+    0% {
+      transform: scale(0, 0);
+      opacity: 0.5;
+    }
+    100% {
+      transform: scale(20, 20);
+      opacity: 0;
+    }
+  }
+  
+  .user-save-btn:focus:not(:active)::after {
+    animation: ripple 1s ease-out;
+  }

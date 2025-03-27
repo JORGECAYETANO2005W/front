@@ -1,0 +1,278 @@
+/* Veterinary Admin Dashboard - User Modal Styling */
+:root {
+    --primary-orange: #ff7b29;
+    --secondary-orange: #ff9f4d;
+    --light-orange: #ffeedd;
+    --white: #ffffff;
+    --dark-gray: #444444;
+    --medium-gray: #777777;
+    --light-gray: #eeeeee;
+    --danger-red: #f44336;
+    --success-green: #4caf50;
+    --info-blue: #2196f3;
+}
+
+/* Modal Overlay */
+.user-modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+    animation: vet-admin-fadeIn 0.3s ease;
+}
+
+@keyframes vet-admin-fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Modal Content */
+.user-modal-content {
+    background-color: var(--white);
+    border-radius: 12px;
+    width: 100%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 30px rgba(255, 123, 41, 0.2);
+    animation: vet-admin-slideIn 0.3s ease;
+    scrollbar-width: thin;
+    scrollbar-color: var(--secondary-orange) var(--light-gray);
+}
+
+.user-modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.user-modal-content::-webkit-scrollbar-track {
+    background: var(--light-gray);
+    border-radius: 10px;
+}
+
+.user-modal-content::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-orange);
+    border-radius: 10px;
+}
+
+@keyframes vet-admin-slideIn {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Modal Header */
+.user-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    border-bottom: 2px solid var(--light-orange);
+    background: linear-gradient(to right, var(--light-orange), var(--white));
+}
+
+.user-modal-title {
+    color: var(--primary-orange);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+    position: relative;
+}
+
+.user-modal-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background-color: var(--primary-orange);
+}
+
+.user-modal-close {
+    background: none;
+    border: none;
+    color: var(--dark-gray);
+    font-size: 1rem;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.user-modal-close:hover {
+    background-color: rgba(255, 123, 41, 0.1);
+    color: var(--primary-orange);
+    transform: rotate(90deg);
+}
+
+/* User Details Section */
+.user-details-section {
+    padding: 24px;
+}
+
+/* User Info Header */
+.user-info-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.user-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--light-orange);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-orange);
+    margin-right: 16px;
+}
+
+.user-primary-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.user-primary-info h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--dark-gray);
+}
+
+.user-role-column {
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.user-admin-role {
+    background-color: var(--info-blue);
+    color:#f9f9f9
+}
+
+.user-client-role {
+    color: var(--success-green);
+}
+
+.user-status {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.user-verified {
+    color: var(--success-green);
+}
+
+.user-unverified {
+    color: var(--danger-red);
+}
+
+/* User Details Grid */
+.user-details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.user-details-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+}
+
+.user-details-row:hover {
+    background-color: var(--light-orange);
+    transform: translateX(5px);
+}
+
+.user-details-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--dark-gray);
+    font-weight: 600;
+}
+
+.user-details-label svg {
+    color: var(--primary-orange);
+}
+
+.user-details-value {
+    color: var(--dark-gray);
+    font-weight: 500;
+}
+
+/* Modal Footer */
+.user-modal-footer {
+    padding: 16px 24px;
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid var(--light-gray);
+    background-color: #f9f9f9;
+    border-radius: 0 0 12px 12px;
+}
+
+.user-create-btn {
+    background-color: var(--primary-orange);
+    color: var(--white);
+    border: none;
+    border-radius: 25px;
+    padding: 10px 24px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.user-create-btn:hover {
+    background-color: var(--secondary-orange);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 123, 41, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .user-modal-content {
+        max-height: 85vh;
+    }
+
+    .user-details-grid {
+        grid-template-columns: 1fr;
+    }
+}
+

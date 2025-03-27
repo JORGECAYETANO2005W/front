@@ -1,0 +1,123 @@
+/* Estilos para la Verificación de Correo */
+.verify-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #2d3748;
+    padding: 20px;
+}
+p{
+    color: white;
+}
+
+.verify-box {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    width: 500px;
+    max-width: 90%;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+.verify-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.verify-text {
+    font-size: 16px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.input-field {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid #28a745;
+    border-radius: 8px;
+    background-color: white;
+    color: #000000;
+    outline: none;
+    transition: all 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.input-field:focus {
+    border-color: #218838;
+    box-shadow: 0 0 10px #218838;
+    transform: scale(1.02);
+}
+
+.submit-button {
+    width: 100%;
+    background-color: #28a745;
+    color: white;
+    padding: 14px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    margin-top: 10px;
+}
+
+.submit-button:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px #218838;
+}
+
+.submit-button:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.back-to-login {
+    color: #28a745;
+    text-decoration: none;
+    font-weight: bold;
+    display: block;
+    margin-top: 15px;
+    transition: color 0.3s ease-in-out;
+}
+
+.back-to-login:hover {
+    color: #218838;
+    text-decoration: underline;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 480px) {
+    .verify-box {
+        padding: 20px;
+    }
+
+    .input-field {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .submit-button {
+        font-size: 16px;
+        padding: 12px;
+    }
+}
+

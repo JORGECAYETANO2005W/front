@@ -1,0 +1,427 @@
+/* Veterinary Admin Dashboard - Product Modal Styling */
+:root {
+    --primary-orange: #ff7b29;
+    --secondary-orange: #ff9f4d;
+    --light-orange: #ffeedd;
+    --white: #ffffff;
+    --dark-gray: #444444;
+    --medium-gray: #777777;
+    --light-gray: #eeeeee;
+    --danger-red: #f44336;
+    --success-green: #4caf50;
+    --info-blue: #2196f3;
+}
+
+/* Modal Overlay */
+.vet-admin-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+    animation: vet-admin-fadeIn 0.3s ease;
+}
+
+@keyframes vet-admin-fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Modal Content */
+.vet-admin-modal-content {
+    background-color: var(--white);
+    border-radius: 12px;
+    width: 100%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 30px rgba(255, 123, 41, 0.2);
+    animation: vet-admin-slideIn 0.3s ease;
+    scrollbar-width: thin;
+    scrollbar-color: var(--secondary-orange) var(--light-gray);
+}
+
+.vet-admin-modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.vet-admin-modal-content::-webkit-scrollbar-track {
+    background: var(--light-gray);
+    border-radius: 10px;
+}
+
+.vet-admin-modal-content::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-orange);
+    border-radius: 10px;
+}
+
+@keyframes vet-admin-slideIn {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Modal Header */
+.vet-admin-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    border-bottom: 2px solid var(--light-orange);
+    background: linear-gradient(to right, var(--light-orange), var(--white));
+}
+
+.vet-admin-modal-title {
+    color: var(--primary-orange);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+    position: relative;
+}
+
+.vet-admin-modal-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background-color: var(--primary-orange);
+}
+
+.vet-admin-modal-close {
+    background: none;
+    border: none;
+    color: var(--dark-gray);
+    font-size: 1rem;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.vet-admin-modal-close:hover {
+    background-color: rgba(255, 123, 41, 0.1);
+    color: var(--primary-orange);
+    transform: rotate(90deg);
+}
+
+/* Modal Body */
+.vet-admin-modal-body {
+    padding: 24px;
+}
+
+/* Product Main Info */
+.vet-admin-product-main-info {
+    margin-bottom: 24px;
+}
+
+.vet-admin-product-name {
+    color: var(--dark-gray);
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin: 0 0 16px 0;
+    text-align: center;
+    position: relative;
+    padding-bottom: 12px;
+}
+
+.vet-admin-product-name::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: var(--primary-orange);
+}
+
+/* Gallery */
+.vet-admin-product-gallery {
+    margin: 24px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.vet-admin-main-image-container {
+    width: 100%;
+    height: 300px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    background-color: var(--light-gray);
+    margin-bottom: 16px;
+}
+
+.vet-admin-product-main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.vet-admin-image-thumbnails {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.vet-admin-image-thumbnail {
+    width: 70px;
+    height: 70px;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.vet-admin-image-thumbnail.active {
+    border-color: var(--primary-orange);
+    transform: scale(1.05);
+}
+
+.vet-admin-image-thumbnail:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.vet-admin-image-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Description */
+.vet-admin-product-description {
+    background-color: var(--light-orange);
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+}
+
+.vet-admin-description-title {
+    color: var(--dark-gray);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 12px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.vet-admin-description-title svg {
+    color: var(--primary-orange);
+}
+
+.vet-admin-description-content {
+    margin: 0;
+    color: var(--dark-gray);
+    line-height: 1.6;
+}
+
+/* Details Grid */
+.vet-admin-product-details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.vet-admin-details-column {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.vet-admin-detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+}
+
+.vet-admin-detail-item:hover {
+    background-color: var(--light-orange);
+    transform: translateX(5px);
+}
+
+.vet-admin-detail-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--dark-gray);
+    font-weight: 600;
+}
+
+.vet-admin-detail-label svg {
+    color: var(--primary-orange);
+}
+
+.vet-admin-detail-value {
+    color: var(--dark-gray);
+    font-weight: 500;
+}
+
+.vet-admin-rating-display {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.vet-admin-star-icon {
+    color: var(--primary-orange);
+}
+
+/* Additional Details */
+.vet-admin-additional-details {
+    margin: 24px 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+}
+
+.vet-admin-detail-item.wide {
+    grid-column: span 2;
+}
+
+/* Reviews */
+.vet-admin-product-reviews {
+    margin-top: 32px;
+    border-top: 2px dashed var(--light-orange);
+    padding-top: 24px;
+}
+
+.vet-admin-reviews-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--dark-gray);
+    font-size: 1.2rem;
+    margin: 0 0 16px 0;
+}
+
+.vet-admin-reviews-title svg {
+    color: var(--primary-orange);
+}
+
+.vet-admin-reviews-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.vet-admin-review-item {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 16px;
+    border-left: 3px solid var(--secondary-orange);
+}
+
+.vet-admin-review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.vet-admin-reviewer-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.vet-admin-reviewer-name {
+    font-weight: 600;
+    color: var(--dark-gray);
+}
+
+.vet-admin-review-date {
+    font-size: 0.85rem;
+    color: var(--medium-gray);
+}
+
+.vet-admin-review-rating {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 600;
+}
+
+.vet-admin-review-comment {
+    margin: 10px 0 0 0;
+    line-height: 1.5;
+    color: var(--dark-gray);
+}
+
+/* Modal Footer */
+.vet-admin-modal-footer {
+    padding: 16px 24px;
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid var(--light-gray);
+    background-color: #f9f9f9;
+    border-radius: 0 0 12px 12px;
+}
+
+.vet-admin-modal-close-btn {
+    background-color: var(--primary-orange);
+    color: var(--white);
+    border: none;
+    border-radius: 25px;
+    padding: 10px 24px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.vet-admin-modal-close-btn:hover {
+    background-color: var(--secondary-orange);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 123, 41, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .vet-admin-modal-content {
+        max-height: 85vh;
+    }
+
+    .vet-admin-product-details-grid,
+    .vet-admin-additional-details {
+        grid-template-columns: 1fr;
+    }
+
+    .vet-admin-detail-item.wide {
+        grid-column: span 1;
+    }
+
+    .vet-admin-main-image-container {
+        height: 220px;
+    }
+}

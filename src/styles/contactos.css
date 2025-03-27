@@ -1,0 +1,392 @@
+/* contactos.css */
+
+/* Variables principales de color para la veterinaria */
+:root {
+    --primary-color: #FF9800; /* Naranja */
+    --primary-light: #FFB74D;
+    --primary-dark: #F57C00;
+    --secondary-color: #FFEB3B; /* Amarillo */
+    --secondary-light: #FFF59D;
+    --white-color: #FFFFFF;
+    --gray-light: #F5F5F5;
+    --gray-medium: #E0E0E0;
+    --gray-dark: #757575;
+    --text-color: #333333;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --radius: 8px;
+    --transition: all 0.3s ease;
+  }
+  
+  .contactPage {
+    font-family: 'Nunito', sans-serif;
+    color: var(--text-color);
+    background-color: var(--gray-light);
+    padding: 40px 0;
+  }
+  
+  .contactPage__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  /* Estilos del encabezado */
+  .contactPage__header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 20px;
+    position: relative;
+  }
+  
+  .contactPage__title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: var(--primary-dark);
+    margin-bottom: 10px;
+    position: relative;
+    display: inline-block;
+  }
+  
+  .contactPage__title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+  }
+  
+  .contactPage__subtitle {
+    font-size: 1.2rem;
+    color: var(--gray-dark);
+    max-width: 600px;
+    margin: 20px auto 0;
+  }
+  
+  /* Diseño del contenido */
+  .contactPage__content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  /* Estilos de la sección de información */
+  .contactPage__info {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .contactPage__infoSection,
+  .contactPage__locations,
+  .contactPage__social {
+    background-color: var(--white-color);
+    border-radius: var(--radius);
+    padding: 25px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+  }
+  
+  .contactPage__infoSection:hover,
+  .contactPage__locations:hover,
+  .contactPage__social:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .contactPage__sectionTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  
+  /* Estilos de los items de contacto */
+  .contactPage__contactItems {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .contactPage__contactItem {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .contactPage__contactIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary-light);
+    color: var(--white-color);
+    border-radius: 50%;
+    font-size: 1.2rem;
+  }
+  
+  .contactPage__contactText h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+  
+  .contactPage__contactText p {
+    color: var(--gray-dark);
+    font-size: 0.95rem;
+  }
+  
+  /* Estilos de ubicaciones */
+  .contactPage__locationGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .contactPage__locationCard {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 15px;
+    background-color: var(--gray-light);
+    border-radius: var(--radius);
+    transition: var(--transition);
+  }
+  
+  .contactPage__locationCard:hover {
+    background-color: var(--secondary-light);
+  }
+  
+  .contactPage__locationIcon {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+  }
+  
+  .contactPage__locationDetails h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--primary-dark);
+  }
+  
+  .contactPage__locationDetails p {
+    margin: 3px 0;
+    font-size: 0.9rem;
+    color: var(--gray-dark);
+  }
+  
+  /* Estilos de redes sociales */
+  .contactPage__socialGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  
+  .contactPage__socialLink {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    background-color: #fff;
+    border: 2px solid var(--gray-medium);
+    border-radius: 30px;
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+  }
+  
+  .contactPage__socialLink i {
+    color: var(--social-color, var(--primary-color));
+    font-size: 1.2rem;
+  }
+  
+  .contactPage__socialLink:hover {
+    background-color: var(--social-color, var(--primary-color));
+    border-color: var(--social-color, var(--primary-color));
+    color: #fff;
+    transform: scale(1.05);
+  }
+  
+  .contactPage__socialLink:hover i {
+    color: #fff;
+  }
+  
+  /* Animaciones y efectos adicionales */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .contactPage__header,
+  .contactPage__infoSection,
+  .contactPage__locations,
+  .contactPage__social {
+    animation: fadeIn 0.6s ease forwards;
+  }
+  
+  .contactPage__infoSection {
+    animation-delay: 0.1s;
+  }
+  
+  .contactPage__locations {
+    animation-delay: 0.2s;
+  }
+  
+  .contactPage__social {
+    animation-delay: 0.3s;
+  }
+  
+  /* Decoraciones adicionales */
+  .contactPage__header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 20%;
+    width: 40px;
+    height: 40px;
+    background-color: var(--secondary-light);
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0.6;
+  }
+  
+  .contactPage__header::after {
+    content: "";
+    position: absolute;
+    bottom: 10px;
+    right: 20%;
+    width: 30px;
+    height: 30px;
+    background-color: var(--primary-light);
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0.6;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .contactPage__title {
+      font-size: 2.2rem;
+    }
+    
+    .contactPage__subtitle {
+      font-size: 1rem;
+    }
+    
+    .contactPage__form {
+      grid-template-columns: 1fr;
+    }
+    
+    .contactPage__socialGrid {
+      justify-content: center;
+    }
+    
+    .contactPage__submitBtn {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .contactPage__locationGrid {
+      grid-template-columns: 1fr;
+    }
+    
+    .contactPage__contactItem {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .contactPage__social {
+      order: -1;
+    }
+  }
+  
+  /* Estilos para los mensajes de validación del formulario */
+  .contactPage__formGroup--error input,
+  .contactPage__formGroup--error textarea {
+    border-color: #f44336;
+  }
+  
+  .contactPage__formGroup--error .contactPage__errorMessage {
+    color: #f44336;
+    font-size: 0.8rem;
+    margin-top: 5px;
+  }
+  
+  .contactPage__formGroup--success input,
+  .contactPage__formGroup--success textarea {
+    border-color: #4CAF50;
+  }
+  
+  /* Indicador de carga para envío de formulario */
+  .contactPage__submitBtn--loading {
+    position: relative;
+    color: transparent;
+  }
+  
+  .contactPage__submitBtn--loading::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    left: 50%;
+    margin: -10px 0 0 -10px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: var(--white-color);
+    animation: spin 1s ease-in-out infinite;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Estilo para la confirmación del mensaje enviado */
+  .contactPage__messageSuccess {
+    grid-column: 1 / -1;
+    padding: 15px;
+    background-color: rgba(76, 175, 80, 0.1);
+    border-left: 4px solid #4CAF50;
+    color: #2E7D32;
+    margin-top: 20px;
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+  }
+  
+  .contactPage__messageSuccess i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+  }
+  
+  /* Efecto hover para ubicaciones */
+  .contactPage__locationCard:hover .contactPage__locationIcon {
+    transform: scale(1.2);
+  }
+  
+  /* Animaciones para íconos sociales */
+  .contactPage__socialLink i {
+    transition: transform 0.3s ease;
+  }
+  
+  .contactPage__socialLink:hover i {
+    transform: scale(1.2) rotate(5deg);
+  }

@@ -1,0 +1,658 @@
+/* Admin Profile Page CSS */
+.admin-profile-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f9f9f9;
+}
+
+/* Header Section */
+.admin-profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 3px solid #ffa500;
+}
+
+.admin-welcome-title {
+    font-size: 2.4rem;
+    color: #333;
+    margin: 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.admin-username {
+    color: #ff8c00;
+    font-weight: 700;
+}
+
+.admin-role-badge {
+    display: inline-block;
+    background-color: #ffc107;
+    color: #333;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 0.7rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.admin-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.admin-edit-button,
+.admin-logout-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border: none;
+    font-size: 1rem;
+}
+
+.admin-edit-button {
+    background-color: #ff8c00;
+    color: white;
+    box-shadow: 0 3px 6px rgba(255, 140, 0, 0.2);
+}
+
+.admin-edit-button:hover {
+    background-color: #e67e00;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(255, 140, 0, 0.3);
+}
+
+.admin-logout-button {
+    background-color: #f8f9fa;
+    color: #495057;
+    border: 1px solid #dee2e6;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.admin-logout-button:hover {
+    background-color: #e9ecef;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Dashboard Grid - ENHANCED */
+.admin-dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+    margin-top: 3rem;
+}
+
+.admin-dashboard-card {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    text-decoration: none;
+    color: inherit;
+    height: 280px;
+    /* Increased height */
+    position: relative;
+    z-index: 1;
+}
+
+.admin-dashboard-card:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    z-index: 2;
+}
+
+.admin-card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 120px;
+    /* Increased height */
+    font-size: 3.5rem;
+    /* Larger icon */
+    color: white;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.admin-card-icon::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(-100%) rotate(45deg);
+    transition: transform 0.6s ease;
+}
+
+.admin-dashboard-card:hover .admin-card-icon::before {
+    transform: translateX(100%) rotate(45deg);
+}
+
+.products-card .admin-card-icon {
+    background: linear-gradient(135deg, #ff8c00, #ff6a00);
+}
+
+.users-card .admin-card-icon {
+    background: linear-gradient(135deg, #ffa500, #ff8c00);
+}
+
+.devices-card .admin-card-icon {
+    background: linear-gradient(135deg, #ffb700, #ffa500);
+}
+
+.company-card .admin-card-icon {
+    background: linear-gradient(135deg, #ffc107, #ffb700);
+}
+
+.admin-card-content {
+    padding: 2rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.admin-dashboard-card:hover .admin-card-content {
+    transform: translateY(-5px);
+}
+
+.admin-card-content h2 {
+    font-size: 1.6rem;
+    margin: 0 0 1rem 0;
+    color: #343a40;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.admin-card-content h2::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: #ff8c00;
+    transition: width 0.4s ease;
+}
+
+.admin-dashboard-card:hover .admin-card-content h2::after {
+    width: 40px;
+}
+
+.admin-dashboard-card:hover .admin-card-content h2 {
+    color: #ff8c00;
+}
+
+.admin-card-content p {
+    font-size: 1.1rem;
+    color: #6c757d;
+    margin: 0;
+    transition: opacity 0.3s ease;
+    opacity: 0.8;
+}
+
+.admin-dashboard-card:hover .admin-card-content p {
+    opacity: 1;
+}
+
+/* Card bottom indicator */
+.admin-dashboard-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 5px;
+    transition: width 0.4s ease;
+}
+
+.products-card::after {
+    background-color: #ff8c00;
+}
+
+.users-card::after {
+    background-color: #ffa500;
+}
+
+.devices-card::after {
+    background-color: #ffb700;
+}
+
+.company-card::after {
+    background-color: #ffc107;
+}
+
+.admin-dashboard-card:hover::after {
+    width: 80%;
+}
+
+/* Card entrance animation */
+@keyframes cardEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.admin-dashboard-card:nth-child(1) {
+    animation: cardEntrance 0.5s ease-out 0.1s both;
+}
+
+.admin-dashboard-card:nth-child(2) {
+    animation: cardEntrance 0.5s ease-out 0.2s both;
+}
+
+.admin-dashboard-card:nth-child(3) {
+    animation: cardEntrance 0.5s ease-out 0.3s both;
+}
+
+.admin-dashboard-card:nth-child(4) {
+    animation: cardEntrance 0.5s ease-out 0.4s both;
+}
+
+/* Modal Styles */
+.admin-profile-modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 600px;
+    outline: none;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    animation: modalAppear 0.3s ease-out forwards;
+}
+
+@keyframes modalAppear {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -55%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.admin-profile-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: overlayAppear 0.3s ease-out forwards;
+}
+
+@keyframes overlayAppear {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.admin-profile-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.8rem;
+    border-bottom: 1px solid #dee2e6;
+    background-color: #fff9f0;
+}
+
+.admin-profile-modal-header h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    color: #ff8c00;
+    font-weight: 600;
+}
+
+.admin-modal-close {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #6c757d;
+    transition: color 0.2s ease;
+}
+
+.admin-modal-close:hover {
+    color: #ff8c00;
+}
+
+.admin-profile-form {
+    padding: 2rem;
+}
+
+.admin-form-group {
+    margin-bottom: 1.8rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.admin-form-group label {
+    display: block;
+    margin-bottom: 0.7rem;
+    font-weight: 600;
+    color: #495057;
+    transition: color 0.3s ease;
+}
+
+.admin-form-group:focus-within label {
+    color: #ff8c00;
+}
+
+.admin-form-group input {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: #f9f9f9;
+}
+
+.admin-form-group input:focus {
+    outline: none;
+    border-color: #ff8c00;
+    box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.2);
+    background-color: #fff;
+}
+
+.admin-form-section {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid #dee2e6;
+}
+
+.admin-form-section h3 {
+    margin-top: 0;
+    font-size: 1.4rem;
+    color: #495057;
+    margin-bottom: 1.8rem;
+}
+
+.admin-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+}
+
+.admin-cancel-button,
+.admin-save-button {
+    padding: 1rem 1.8rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    font-size: 1rem;
+}
+
+.admin-cancel-button {
+    background-color: #f8f9fa;
+    color: #495057;
+    border: 1px solid #dee2e6;
+}
+
+.admin-cancel-button:hover {
+    background-color: #e9ecef;
+    transform: translateY(-2px);
+}
+
+.admin-save-button {
+    background-color: #ff8c00;
+    color: white;
+    box-shadow: 0 3px 6px rgba(255, 140, 0, 0.2);
+}
+
+.admin-save-button:hover {
+    background-color: #e67e00;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(255, 140, 0, 0.3);
+}
+
+.admin-save-button:disabled {
+    background-color: #ffc166;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Loading state */
+.admin-profile-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    font-size: 1.4rem;
+    color: #ff8c00;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.6;
+    }
+}
+
+.admin-profile-loading {
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .admin-dashboard-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .admin-dashboard-card {
+        height: 240px;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-profile-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+
+    .admin-actions {
+        width: 100%;
+    }
+
+    .admin-edit-button,
+    .admin-logout-button {
+        flex: 1;
+        justify-content: center;
+    }
+
+    .admin-dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .admin-dashboard-card {
+        height: 220px;
+    }
+}
+
+@media (max-width: 576px) {
+    .admin-profile-container {
+        padding: 1.5rem 1rem;
+    }
+
+    .admin-welcome-title {
+        font-size: 2rem;
+    }
+
+    .admin-form-actions {
+        flex-direction: column;
+    }
+
+    .admin-cancel-button,
+    .admin-save-button {
+        width: 100%;
+    }
+
+    .admin-card-icon {
+        height: 100px;
+    }
+}
+
+
+
+
+/* Card hover effects with animal theme elements */
+.products-card .admin-card-icon::after,
+.users-card .admin-card-icon::after,
+.devices-card .admin-card-icon::after,
+.company-card .admin-card-icon::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.1;
+    right: 20px;
+    bottom: 10px;
+    transition: all 0.4s ease;
+}
+
+.products-card .admin-card-icon::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='white' d='M256 224c-79.5 0-144 64.5-144 144s64.5 144 144 144 144-64.5 144-144-64.5-144-144-144zm0 240c-52.9 0-96-43.1-96-96s43.1-96 96-96 96 43.1 96 96-43.1 96-96 96zm46.4-146.4c-7.8-7.8-20.5-7.8-28.3 0L256 335.8l-18.1-18.1c-7.8-7.8-20.5-7.8-28.3 0-7.8 7.8-7.8 20.5 0 28.3l32 32c3.9 3.9 9 5.9 14.1 5.9s10.2-2 14.1-5.9l32-32c7.9-7.8 7.9-20.5.1-28.3z'/%3E%3C/svg%3E");
+}
+
+.users-card .admin-card-icon::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='white' d='M256 256c52.9 0 96-43.1 96-96s-43.1-96-96-96-96 43.1-96 96 43.1 96 96 96zm0-144c26.5 0 48 21.5 48 48s-21.5 48-48 48-48-21.5-48-48 21.5-48 48-48zm0 160c-106 0-192 86-192 192 0 17.7 14.3 32 32 32h320c17.7 0 32-14.3 32-32 0-106-86-192-192-192zm0 336c-79.4 0-145.1-60.3-153.3-137.4C145.6 438.6 198.2 416 256 416s110.4 22.6 153.3 54.6C401.1 547.7 335.4 608 256 608z'/%3E%3C/svg%3E");
+}
+
+.devices-card .admin-card-icon::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 512'%3E%3Cpath fill='white' d='M624 416H381.54c-.74 19.81-14.71 32-32.74 32H288c-18.69 0-33.02-17.47-32.77-32H16c-8.8 0-16 7.2-16 16v16c0 35.2 28.8 64 64 64h512c35.2 0 64-28.8 64-64v-16c0-8.8-7.2-16-16-16zM576 48c0-26.4-21.6-48-48-48H112C85.6 0 64 21.6 64 48v336h512V48zm-64 272H128V64h384v256z'/%3E%3C/svg%3E");
+}
+
+.company-card .admin-card-icon::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath fill='white' d='M436 480h-20V24c0-13.255-10.745-24-24-24H56C42.745 0 32 10.745 32 24v456H12c-6.627 0-12 5.373-12 12v20h448v-20c0-6.627-5.373-12-12-12zM128 76c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12V76zm0 96c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12v-40zm52 148h-40c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12zm76 160h-64v-84c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v84zm64-172c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40zm0-96c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40zm0-96c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40z'/%3E%3C/svg%3E");
+}
+
+.admin-dashboard-card:hover .admin-card-icon::after {
+    opacity: 0.3;
+    transform: scale(1.2) rotate(10deg);
+}
+
+/* Enhanced card animations */
+.admin-dashboard-card {
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Paw print loading animation for profile loading */
+@keyframes paw-print-loading {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.8;
+    }
+
+    50% {
+        transform: translateY(-15px) scale(1.1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.8;
+    }
+}
+
+.admin-profile-loading::before {
+    content: '🐾';
+    font-size: 2rem;
+    margin-right: 15px;
+    animation: paw-print-loading 1.5s infinite ease-in-out;
+}
+
+/* Card hover lift effect with shadow transition */
+.admin-dashboard-card {
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+        box-shadow 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Enhance focus states for accessibility with paw print style */
+button:focus,
+a:focus,
+input:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.4);
+    position: relative;
+}
+
+button:focus::after,
+a:focus::after {
+    content: '🐾';
+    position: absolute;
+    font-size: 12px;
+    right: -5px;
+    top: -5px;
+    opacity: 0.7;
+}
+
+/* Veterinary theme decorative elements */
+.admin-profile-container::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 80px;
+    height: 80px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%23ffa500' opacity='0.1' d='M256 160c-52.9 0-96 43.1-96 96s43.1 96 96 96 96-43.1 96-96-43.1-96-96-96zm240 240v-96c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7 14.3 32 32 32s32-14.3 32-32zm-160 0v-96c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7 14.3 32 32 32s32-14.3 32-32zm-160 0v-96c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7 14.3 32 32 32s32-14.3 32-32zM96 256V160c0-17.7-14.3-32-32-32S32 142.3 32 160v96c0 17.7 14.3 32 32 32s32-14.3 32-32zm320 0V160c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7 14.3 32 32 32s32-14.3 32-32zM256 64c17.7 0 32-14.3 32-32s-14.3-32-32-32-32 14.3-32 32 14.3 32 32 32z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 0.1;
+    z-index: -1;
+}

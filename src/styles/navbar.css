@@ -1,0 +1,978 @@
+/* ======== NAVBAR CSS (VETERINARIA) ======== */
+:root {
+    --vet-primary: #FF8000;
+    --vet-primary-light: #FFA64D;
+    --vet-primary-dark: #CC6600;
+    --vet-secondary: #FFD700;
+    --vet-secondary-light: #FFDE33;
+    --vet-secondary-dark: #CCAC00;
+    --vet-white: #FFFFFF;
+    --vet-light-gray: #F7F7F7;
+    --vet-gray: #E0E0E0;
+    --vet-dark-gray: #666666;
+    --vet-black: #212121;
+    --vet-shadow: 0 4px 12px rgba(255, 128, 0, 0.15);
+    --vet-radius: 12px;
+    --vet-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* ==== Estilos generales del navbar ==== */
+.vet-promo-banner {
+    background: linear-gradient(45deg, var(--vet-primary), var(--vet-secondary));
+    color: var(--vet-white);
+    text-align: center;
+    padding: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 100;
+    animation: vet-pulse 2s infinite alternate;
+}
+
+@keyframes vet-pulse {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+.vet-header {
+    background-color: var(--vet-white);
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 99;
+    transition: var(--vet-transition);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.vet-header.vet-scrolled {
+    box-shadow: var(--vet-shadow);
+}
+
+.vet-header.vet-scroll-down {
+    transform: translateY(-100%);
+}
+
+.vet-header.vet-scroll-up {
+    transform: translateY(0);
+}
+
+.vet-header-top {
+    padding: 15px 0;
+    border-bottom: 1px solid var(--vet-gray);
+    transition: var(--vet-transition);
+}
+
+.vet-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* ==== Logo y marca ==== */
+.vet-logo {
+    display: flex;
+    align-items: center;
+}
+
+.vet-logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--vet-primary);
+    font-weight: 700;
+    transition: var(--vet-transition);
+}
+
+.vet-logo a:hover {
+    transform: scale(1.05);
+}
+
+.vet-logo-icon {
+    color: var(--vet-primary);
+    margin-right: 8px;
+    animation: vet-bounce 1s infinite alternate ease-in-out;
+}
+
+@keyframes vet-bounce {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-5px);
+    }
+}
+
+.vet-brand-name {
+    font-size: 24px;
+    background: linear-gradient(45deg, var(--vet-primary), var(--vet-secondary));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+
+
+
+/* ==== Barra de búsqueda ==== */
+.vet-search-bar {
+    position: relative;
+    flex: 1;
+    max-width: 500px;
+    margin: 0 30px;
+}
+
+.vet-search-bar input {
+    width: 100%;
+    padding: 12px 45px 12px 20px;
+    border: 2px solid var(--vet-gray);
+    border-radius: 25px;
+    background-color: var(--vet-light-gray);
+    transition: var(--vet-transition);
+    font-size: 14px;
+    outline: none;
+}
+
+.vet-search-bar input:focus {
+    border-color: var(--vet-primary);
+    box-shadow: 0 0 0 3px rgba(255, 128, 0, 0.2);
+    background-color: var(--vet-white);
+}
+
+.vet-search-bar .vet-search-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: var(--vet-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 50%;
+    overflow: hidden;
+    transition: var(--vet-transition);
+}
+
+.vet-search-bar .vet-search-btn:hover {
+    background-color: rgba(255, 128, 0, 0.1);
+}
+
+/* ==== Resultados de búsqueda ==== */
+.vet-search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--vet-white);
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    margin-top: 10px;
+    max-height: 400px;
+    overflow-y: auto;
+    z-index: 999;
+    border: 1px solid var(--vet-gray);
+}
+
+.vet-results-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.vet-result-item {
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--vet-transition);
+}
+
+.vet-result-item:hover {
+    background-color: var(--vet-light-gray);
+}
+
+.vet-result-content {
+    display: flex;
+    align-items: center;
+}
+
+.vet-result-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-right: 10px;
+    border: 1px solid var(--vet-gray);
+}
+
+.vet-result-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.vet-result-name {
+    font-weight: 500;
+    color: var(--vet-black);
+}
+
+.vet-no-results {
+    padding: 15px;
+    text-align: center;
+    color: var(--vet-dark-gray);
+    font-size: 14px;
+}
+
+/* ==== Botones de autenticación ==== */
+.vet-auth-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.vet-btn-login,
+.vet-btn-register {
+    padding: 10px 18px;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: var(--vet-transition);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.vet-btn-login {
+    background-color: transparent;
+    color: var(--vet-primary);
+    border: 2px solid var(--vet-primary);
+}
+
+.vet-btn-register {
+    background-color: var(--vet-primary);
+    color: var(--vet-white);
+    border: 2px solid var(--vet-primary);
+}
+
+.vet-btn-login:hover {
+    background-color: rgba(255, 128, 0, 0.1);
+}
+
+.vet-btn-register:hover {
+    background-color: var(--vet-primary-dark);
+    border-color: var(--vet-primary-dark);
+}
+
+/* ==== Menú de usuario ==== */
+.vet-user-menu {
+    position: relative;
+}
+
+.vet-profile-dropdown,
+.vet-admin-dropdown {
+    position: relative;
+}
+
+.vet-dropdown-button,
+.vet-admin-button {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    padding: 10px 15px;
+    font-weight: 600;
+    color: var(--vet-dark-gray);
+    border-radius: 25px;
+    cursor: pointer;
+    transition: var(--vet-transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.vet-dropdown-button i,
+.vet-admin-button i {
+    margin-right: 5px;
+}
+
+.vet-dropdown-button:hover,
+.vet-admin-button:hover {
+    background-color: var(--vet-light-gray);
+    color: var(--vet-primary);
+}
+
+.vet-dropdown-content,
+.vet-admin-content {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    min-width: 220px;
+    background-color: var(--vet-white);
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    margin-top: 10px;
+    display: none;
+    z-index: 999;
+    border: 1px solid var(--vet-gray);
+    animation: vet-fadeIn 0.2s ease-out;
+}
+
+@keyframes vet-fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.vet-dropdown-content.vet-show,
+.vet-admin-content.vet-show {
+    display: block;
+}
+
+.vet-dropdown-link,
+.vet-admin-link {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: var(--vet-dark-gray);
+    font-weight: 500;
+    border-radius: 8px;
+    transition: var(--vet-transition);
+}
+
+.vet-dropdown-link:hover,
+.vet-admin-link:hover {
+    background-color: var(--vet-light-gray);
+    color: var(--vet-primary);
+}
+
+.vet-logout-btn {
+    width: 100%;
+    padding: 10px 15px;
+    background-color: transparent;
+    border: none;
+    text-align: left;
+    color: var(--vet-primary);
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: var(--vet-transition);
+}
+
+.vet-logout-btn:hover {
+    background-color: rgba(255, 0, 0, 0.1);
+    color: #ff3b30;
+}
+
+/* ==== Navbar de navegación ==== */
+.vet-header-nav {
+    background-color: var(--vet-white);
+    border-bottom: 1px solid var(--vet-gray);
+}
+
+.vet-nav-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.vet-nav-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+}
+
+.vet-nav-item {
+    position: relative;
+}
+
+.vet-nav-link {
+    display: block;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: var(--vet-dark-gray);
+    font-weight: 600;
+    transition: var(--vet-transition);
+    position: relative;
+}
+
+.vet-nav-link:hover {
+    color: var(--vet-primary);
+}
+
+.vet-nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background-color: var(--vet-primary);
+    transition: var(--vet-transition);
+    transform: translateX(-50%);
+}
+
+.vet-nav-link:hover::after {
+    width: 60%;
+}
+
+/* ==== Estilos mobile ==== */
+.vet-hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    position: relative;
+    z-index: 101;
+}
+
+.vet-hamburger-line {
+    display: block;
+    width: 24px;
+    height: 3px;
+    margin: 5px 0;
+    background-color: var(--vet-primary);
+    border-radius: 3px;
+    transition: var(--vet-transition);
+}
+
+.vet-hamburger.vet-active .vet-hamburger-line:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.vet-hamburger.vet-active .vet-hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.vet-hamburger.vet-active .vet-hamburger-line:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+@media (max-width: 768px) {
+    .vet-header-nav.vet-mobile {
+        display: block;
+    }
+
+    .vet-hamburger {
+        display: block;
+    }
+
+    .vet-nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 350px;
+        height: 100%;
+        background-color: var(--vet-white);
+        flex-direction: column;
+        padding: 70px 20px 20px;
+        transition: var(--vet-transition);
+        z-index: 100;
+        box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+        overflow-y: auto;
+    }
+
+    .vet-nav-menu.vet-active {
+        right: 0;
+    }
+
+    .vet-nav-item {
+        width: 100%;
+    }
+
+    .vet-nav-link {
+        padding: 15px 0;
+        font-size: 16px;
+        border-bottom: 1px solid var(--vet-gray);
+    }
+
+    .vet-nav-link::after {
+        display: none;
+    }
+
+    .vet-close-menu {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: none;
+        border: none;
+        color: var(--vet-primary);
+        cursor: pointer;
+        padding: 5px;
+    }
+
+    .vet-menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 99;
+        animation: vet-fadeIn 0.3s ease-out;
+    }
+
+    /* Estilos para búsqueda mobile */
+    .vet-mobile-search {
+        padding: 10px 20px;
+        background-color: var(--vet-light-gray);
+        border-bottom: 1px solid var(--vet-gray);
+    }
+
+    .vet-search-bar-mobile {
+        position: relative;
+        width: 100%;
+    }
+
+    .vet-search-bar-mobile input {
+        width: 100%;
+        padding: 10px 40px 10px 15px;
+        border: 2px solid var(--vet-gray);
+        border-radius: 20px;
+        font-size: 14px;
+        outline: none;
+        transition: var(--vet-transition);
+    }
+
+    .vet-search-bar-mobile input:focus {
+        border-color: var(--vet-primary);
+        box-shadow: 0 0 0 3px rgba(255, 128, 0, 0.2);
+    }
+
+    .vet-search-btn-mobile {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: var(--vet-primary);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .vet-search-results-mobile {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--vet-white);
+        border-radius: 12px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        margin-top: 10px;
+        max-height: 300px;
+        overflow-y: auto;
+        z-index: 999;
+        border: 1px solid var(--vet-gray);
+    }
+
+    .vet-results-list-mobile {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .vet-result-item-mobile {
+        padding: 10px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: var(--vet-transition);
+    }
+
+    .vet-result-item-mobile:hover {
+        background-color: var(--vet-light-gray);
+    }
+
+    .vet-result-content-mobile {
+        display: flex;
+        align-items: center;
+    }
+
+    .vet-result-img-mobile {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        overflow: hidden;
+        margin-right: 10px;
+        border: 1px solid var(--vet-gray);
+    }
+
+    .vet-result-img-mobile img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .vet-result-name-mobile {
+        font-weight: 500;
+        color: var(--vet-black);
+        font-size: 14px;
+    }
+
+    .vet-no-results-mobile {
+        padding: 15px;
+        text-align: center;
+        color: var(--vet-dark-gray);
+        font-size: 14px;
+    }
+
+    /* Estilos para sección de administración mobile */
+    .vet-mobile-admin {
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid var(--vet-gray);
+    }
+
+    .vet-admin-title {
+        font-weight: 700;
+        color: var(--vet-primary);
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+    }
+
+    .vet-admin-title i {
+        margin-right: 5px;
+    }
+
+    .vet-admin-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .vet-admin-link-mobile {
+        display: block;
+        padding: 12px 0;
+        text-decoration: none;
+        color: var(--vet-dark-gray);
+        font-weight: 500;
+        border-bottom: 1px solid var(--vet-gray);
+        transition: var(--vet-transition);
+    }
+
+    .vet-admin-link-mobile i {
+        margin-right: 8px;
+        color: var(--vet-primary);
+    }
+
+    .vet-admin-link-mobile:hover {
+        color: var(--vet-primary);
+        padding-left: 5px;
+    }
+
+    /* Estilos para autenticación mobile */
+    .vet-mobile-auth {
+        list-style: none;
+        padding: 0;
+        margin: 25px 0 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .vet-mobile-login,
+    .vet-mobile-register {
+        display: block;
+        padding: 12px 0;
+        text-align: center;
+        text-decoration: none;
+        font-weight: 600;
+        border-radius: 25px;
+        transition: var(--vet-transition);
+    }
+
+    .vet-mobile-login {
+        background-color: transparent;
+        color: var(--vet-primary);
+        border: 2px solid var(--vet-primary);
+    }
+
+    .vet-mobile-register {
+        background-color: var(--vet-primary);
+        color: var(--vet-white);
+        border: 2px solid var(--vet-primary);
+    }
+
+    .vet-mobile-login:hover {
+        background-color: rgba(255, 128, 0, 0.1);
+    }
+
+    .vet-mobile-register:hover {
+        background-color: var(--vet-primary-dark);
+        border-color: var(--vet-primary-dark);
+    }
+
+    /* Estilos para menú de usuario mobile */
+    .vet-mobile-user {
+        list-style: none;
+        padding: 0;
+        margin: 20px 0 0;
+        border-top: 1px solid var(--vet-gray);
+        padding-top: 20px;
+    }
+
+    .vet-user-link {
+        display: block;
+        padding: 12px 0;
+        text-decoration: none;
+        color: var(--vet-dark-gray);
+        font-weight: 500;
+        border-bottom: 1px solid var(--vet-gray);
+        transition: var(--vet-transition);
+    }
+
+    .vet-user-link i {
+        margin-right: 8px;
+        color: var(--vet-primary);
+    }
+
+    .vet-user-link:hover {
+        color: var(--vet-primary);
+        padding-left: 5px;
+    }
+
+    .vet-mobile-logout {
+        width: 100%;
+        padding: 12px 0;
+        background-color: transparent;
+        border: none;
+        text-align: left;
+        color: #ff3b30;
+        font-weight: 500;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    .vet-mobile-logout i {
+        margin-right: 8px;
+    }
+
+    .vet-mobile-logout:hover {
+        color: #ff3b30;
+        opacity: 0.8;
+    }
+}
+
+/* ==== Efecto de ripple para botones ==== */
+.vet-ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.vet-ripple-effect {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    transform: scale(0);
+    animation: vet-ripple 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes vet-ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* ==== Adaptabilidad para pantallas medianas ==== */
+@media (max-width: 992px) {
+    .vet-search-bar {
+        max-width: 300px;
+        margin: 0 15px;
+    }
+
+    .vet-container {
+        padding: 0 15px;
+    }
+
+    .vet-nav-link {
+        padding: 15px 15px;
+    }
+
+    .vet-brand-name {
+        font-size: 20px;
+    }
+}
+
+/* ==== Adaptabilidad para pantallas pequeñas ==== */
+@media (max-width: 576px) {
+    .vet-brand-name {
+        font-size: 18px;
+    }
+
+    .vet-logo-icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    .vet-promo-banner {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+
+    .vet-header-top {
+        padding: 10px 0;
+    }
+
+    .vet-container {
+        padding: 0 10px;
+    }
+}
+
+
+/* ==== Estilos para el dropdown de categorías ==== */
+
+.vet-category-dropdown {
+    position: relative;
+}
+
+.vet-category-button {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    transition: var(--vet-transition);
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    font-size: inherit;
+    font-weight: 600;
+    color: var(--vet-dark-gray);
+}
+
+.vet-category-button:hover {
+    color: var(--vet-primary);
+}
+
+.vet-chevron {
+    transition: transform 0.3s ease;
+}
+
+.vet-chevron.vet-rotate {
+    transform: rotate(180deg);
+}
+
+.vet-category-content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 220px;
+    background-color: var(--vet-white);
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    padding: 8px;
+    margin-top: 10px;
+    display: none;
+    z-index: 999;
+    border: 1px solid var(--vet-gray);
+    animation: vet-fadeIn 0.2s ease-out;
+}
+
+.vet-category-content.vet-show {
+    display: block;
+}
+
+.vet-category-link {
+    display: block;
+    padding: 10px 15px;
+    color: var(--vet-dark-gray);
+    font-weight: 500;
+    border-radius: 8px;
+    transition: var(--vet-transition);
+    cursor: pointer;
+}
+
+.vet-category-link:hover {
+    background-color: var(--vet-light-gray);
+    color: var(--vet-primary);
+}
+
+/* Estilos para versión móvil */
+@media (max-width: 768px) {
+    .vet-category-button {
+        justify-content: flex-start;
+        width: 100%;
+        padding: 15px 0;
+        border-bottom: 1px solid var(--vet-gray);
+        background: transparent;
+    }
+    
+    .vet-category-content {
+        position: static;
+        box-shadow: none;
+        border: none;
+        border-radius: 0;
+        padding: 0 0 0 15px;
+        margin-top: 0;
+        margin-bottom: 10px;
+        background-color: transparent;
+        animation: none;
+    }
+    
+    .vet-category-link {
+        padding: 12px 0;
+        border-bottom: 1px solid var(--vet-gray);
+    }
+    
+    .vet-category-link:last-child {
+        border-bottom: none;
+    }
+}
+
+/* Eliminar la clase .vet-nav-link del botón de categorías */
+.vet-nav-item .vet-category-button.vet-nav-link {
+    background: transparent;
+    padding: 15px 20px;
+}
+
+/* Asegurar que el botón de categorías tenga el mismo comportamiento que los demás links */
+.vet-category-button::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background-color: var(--vet-primary);
+    transition: var(--vet-transition);
+    transform: translateX(-50%);
+}
+
+.vet-category-button:hover::after {
+    width: 60%;
+}

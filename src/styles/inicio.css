@@ -1,0 +1,213 @@
+/* Add this to your inicio.css file */
+
+:root {
+  --primary-orange: #ff7a00;
+  --secondary-orange: #ff9d45;
+  --highlight-yellow: #ffd700;
+  --soft-yellow: #ffebb7;
+  --pure-white: #ffffff;
+  --off-white: #f9f9f9;
+  --light-gray: #efefef;
+  --text-dark: #333333;
+  --text-medium: #666666;
+  --shadow: rgba(0, 0, 0, 0.1);
+}
+
+/* Main container styles */
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: var(--off-white);
+  min-height: 100vh;
+}
+
+/* Header styles */
+.dashboard-header {
+  margin-bottom: 2rem;
+  border-bottom: 3px solid var(--primary-orange);
+  padding-bottom: 1rem;
+}
+
+.dashboard-header h1 {
+  color: var(--primary-orange);
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.dashboard-header p {
+  color: var(--text-medium);
+  font-size: 1.1rem;
+}
+
+/* Grid layout for devices */
+.devices-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Card styles */
+.device-card,
+.add-device-card {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px var(--shadow);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  background-color: var(--pure-white);
+  border: none;
+  overflow: hidden;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.device-card:hover,
+.add-device-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  border-bottom: 4px solid var(--primary-orange);
+}
+
+/* Icon styles */
+.device-icon-container,
+.add-icon-container {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.device-icon-container {
+  background: linear-gradient(
+    135deg,
+    var(--primary-orange),
+    var(--secondary-orange)
+  );
+}
+
+.add-icon-container {
+  background: linear-gradient(
+    135deg,
+    var(--highlight-yellow),
+    var(--soft-yellow)
+  );
+}
+
+.device-icon,
+.add-icon {
+  font-size: 32px;
+  color: var(--pure-white);
+}
+
+.add-icon {
+  color: var(--primary-orange);
+}
+
+/* Device name and type styles */
+.device-name,
+.add-text {
+  font-size: 1.2rem;
+  color: var(--text-dark);
+  font-weight: 600;
+  margin: 0.5rem 0;
+  text-align: center;
+}
+
+.device-type,
+.add-description {
+  font-size: 0.9rem;
+  color: var(--text-medium);
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+/* Status indicator styles */
+.device-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.status-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+.status-indicator.online {
+  background-color: #4caf50;
+}
+
+.status-indicator.offline {
+  background-color: #f44336;
+}
+
+.status-text {
+  font-size: 0.8rem;
+  color: var(--text-medium);
+}
+
+/* Loading styles */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.loading-spinner {
+  border: 4px solid var(--light-gray);
+  border-top: 4px solid var(--primary-orange);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 1rem;
+  }
+
+  .devices-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .device-card,
+  .add-device-card {
+    height: 180px;
+  }
+
+  .device-icon-container,
+  .add-icon-container {
+    width: 60px;
+    height: 60px;
+  }
+
+  .device-icon,
+  .add-icon {
+    font-size: 28px;
+  }
+}

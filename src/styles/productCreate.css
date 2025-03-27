@@ -1,0 +1,249 @@
+/* Variables de colores */
+:root {
+    --primary-orange: #ff7d1a;
+    --secondary-orange: #ff9a52;
+    --light-orange: #ffd1a9;
+    --primary-yellow: #ffc107;
+    --light-yellow: #ffe082;
+    --white: #ffffff;
+    --light-gray: #f9f9f9;
+    --medium-gray: #e6e6e6;
+    --dark-gray: #4a4a4a;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos generales */
+.pc-product-form-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    font-family: 'Roboto', 'Segoe UI', sans-serif;
+}
+
+.pc-product-form-box {
+    width: 1000px;
+    max-width: 95%;
+    background-color: var(--white);
+    border-radius: 15px;
+    box-shadow: 0 20px 30px var(--shadow-color);
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.pc-product-form-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(90deg, var(--primary-orange), var(--primary-yellow));
+}
+
+.pc-product-form-title {
+    font-size: 28px;
+    color: var(--dark-gray);
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.pc-product-form-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-orange), var(--primary-yellow));
+    border-radius: 2px;
+}
+
+.pc-product-form-box form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Grupos de campos */
+.pc-input-group {
+    margin-bottom: 20px;
+    width: calc(50% - 10px);
+}
+
+/* Para que la descripción ocupe todo el ancho */
+.pc-full-width {
+    width: 100%;
+}
+
+.pc-input-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--dark-gray);
+}
+
+.pc-input-with-icon {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.pc-input-icon {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: var(--primary-orange);
+    font-size: 16px;
+}
+
+.pc-input-field {
+    width: 100%;
+    padding: 12px 12px 12px 45px;
+    border: 1px solid var(--medium-gray);
+    border-radius: 8px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    background-color: var(--white);
+}
+
+textarea.pc-input-field {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.pc-input-field:focus {
+    outline: none;
+    border-color: var(--primary-orange);
+    box-shadow: 0 0 0 3px var(--light-orange);
+}
+
+select.pc-input-field {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23ff7d1a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 16px;
+}
+
+/* Grupo de botones */
+.pc-button-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.pc-primary-button,
+.pc-secondary-button {
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.pc-primary-button {
+    background: linear-gradient(90deg, var(--primary-orange), var(--primary-yellow));
+    color: var(--white);
+    box-shadow: 0 4px 10px rgba(255, 125, 26, 0.3);
+}
+
+.pc-primary-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(255, 125, 26, 0.4);
+}
+
+.pc-secondary-button {
+    background-color: var(--white);
+    color: var(--dark-gray);
+    border: 1px solid var(--medium-gray);
+}
+
+.pc-secondary-button:hover {
+    background-color: var(--light-gray);
+}
+
+/* Estilos para campos de entrada inválidos */
+.pc-input-field:invalid:not(:placeholder-shown) {
+    border-color: #ff3b30;
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 768px) {
+    .pc-product-form-box {
+        padding: 30px 20px;
+    }
+
+    .pc-input-group {
+        width: 100%;
+    }
+
+    .pc-button-container {
+        flex-direction: column;
+    }
+
+    .pc-primary-button,
+    .pc-secondary-button {
+        width: 100%;
+    }
+}
+
+/* Animación para los mensajes de éxito/error */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Estilos para efectos hover en los campos */
+.pc-input-with-icon:hover .pc-input-icon {
+    color: var(--primary-yellow);
+}
+
+/* Mejoras visuales para los campos de número */
+input[type="number"].pc-input-field {
+    -moz-appearance: textfield;
+}
+
+input[type="number"].pc-input-field::-webkit-outer-spin-button,
+input[type="number"].pc-input-field::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Estilo para dar un toque veterinario */
+.pc-product-form-container::after {
+    content: '';
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 100px;
+    height: 100px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' fill='%23ff7d1a' opacity='0.1'%3E%3Cpath d='M256 224c-79.41 0-192 122.76-192 200.25 0 34.9 26.81 55.75 71.74 55.75 48.84 0 81.09-25.08 120.26-25.08 39.51 0 71.85 25.08 120.26 25.08 44.93 0 71.74-20.85 71.74-55.75C448 346.76 335.41 224 256 224zm-147.28-12.61c-10.4-34.65-42.44-57.09-71.56-50.13-29.12 6.96-44.29 40.69-33.89 75.34 10.4 34.65 42.44 57.09 71.56 50.13 29.12-6.96 44.29-40.69 33.89-75.34zm84.72-20.78c30.94-8.14 46.42-49.94 34.58-93.36s-46.52-72.01-77.46-63.87-46.42 49.94-34.58 93.36c11.84 43.42 46.53 72.02 77.46 63.87zm281.39-29.34c-29.12-6.96-61.15 15.48-71.56 50.13-10.4 34.65 4.77 68.38 33.89 75.34 29.12 6.96 61.15-15.48 71.56-50.13 10.4-34.65-4.77-68.38-33.89-75.34zm-156.27 29.34c30.94 8.14 65.62-20.45 77.46-63.87 11.84-43.42-3.64-85.21-34.58-93.36s-65.62 20.45-77.46 63.87c-11.84 43.43 3.64 85.22 34.58 93.36z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    opacity: 0.1;
+    pointer-events: none;
+    z-index: 0;
+}
