@@ -53,16 +53,15 @@ export const useMqtt = (macAddress) => {
             clean: true,
             reconnectPeriod: 1000,
             connectTimeout: 30 * 1000,
-             // Añade estas opciones para conexiones seguras:
-        // r0ejectUnauthorized: false, // Solo para desarrollo (no usar en producción)
-             //protocol: 'wss', // Fuerza el protocolo seguro
-             //wsOptions: {
-               // Opciones adicionales para WebSocket
-            // }
-        };
+            protocol: 'wss', // Fuerza el protocolo seguro
+            rejectUnauthorized: false, // Solo para desarrollo (no usar en producción)
+            wsOptions: {
+              // Opciones adicionales para WebSocket seguro
+            }
+          };
 
         // Para navegadores, usar WebSocket en lugar de TCP
-        const brokerUrl = "ws://raba7554.ala.dedicated.aws.emqxcloud.com:808/mqtt";
+        const brokerUrl = "wss://raba7554.ala.dedicated.aws.emqxcloud.com:8084/mqtt";
         clientRef.current = MQTT.connect(brokerUrl, mqttOptions);
 
         clientRef.current.on('connect', () => {
